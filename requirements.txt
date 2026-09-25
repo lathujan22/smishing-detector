@@ -1,0 +1,18 @@
+# Core
+numpy>=1.24
+pandas>=2.0
+scikit-learn>=1.3
+tensorflow>=2.15
+transformers>=4.40      # XLM-R tokeniser only
+sentencepiece>=0.2
+emoji>=2.10
+tldextract>=5.1
+# Evaluation / plots
+matplotlib>=3.8
+statsmodels>=0.14       # McNemar's test
+# API
+fastapi>=0.110
+uvicorn>=0.29
+pydantic>=2.6
+# Notebooks
+jupyter

@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+.env
+# large or private files
+data/raw/*
+data/processed/*
+data/real_sms/*
+models/*
+!**/.gitkeep
