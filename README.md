@@ -10,7 +10,7 @@ Author: Lathujan R (IT23214866) · Supervisor: Ms. Fathima Fanoon · SLIIT
 |---|---|
 | data/raw | Mendeley + UCI datasets as downloaded (not committed) |
 | data/processed | train.csv / test.csv — fixed stratified 80/20 split |
-| data/real_sms | real_test.csv — anonymised real SMS incl. Sinhala/Tamil |
+| data/real_sms | real_test.csv — anonymised real SMS incl. Sinhala/Tamil (copy real_test_TEMPLATE.csv) |
 | lexicons | urgency, impersonation and URL-risk word lists |
 | src | data_prep, preprocess, features, model, severity, predict |
 | notebooks | 00 setup, 01 EDA, 02 baselines, 03 CNN-BiLSTM, 04 real-SMS test |
@@ -29,3 +29,6 @@ pip install -r requirements.txt
 ## Training (Google Colab)
 Upload this folder to Google Drive as `MyDrive/smishing-detector`, then open
 `notebooks/00_colab_setup.ipynb` in Colab (Runtime → GPU).
+
+## Plan
+See `docs/ARCHITECTURE.md` (final system) and `docs/CHECKLIST.md` (step-by-step progress).

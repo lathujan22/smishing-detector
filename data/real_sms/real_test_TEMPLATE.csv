@@ -1,0 +1,6 @@
+id,text,label,language,sender_type,source,date_received,notes
+EX-1,"ඔබගේ පාර්සලය රඳවා තබා ඇත. ගාස්තුව ගෙවීමට අද දිනය තුළ මෙතනින් යන්න: http://bit.ly/<LINK>",smishing,si-en,unknown number,own phone,2026-08,EXAMPLE - delete this row
+EX-2,"உங்கள் வங்கி கணக்கு முடக்கப்பட்டுள்ளது. உடனே இந்த இணைப்பில் OTP ஐ உள்ளிடவும் http://<LINK>",smishing,ta-en,unknown number,friend,2026-07,EXAMPLE - delete this row
+EX-3,"Oyage bank account eka block karala. Link eken verify karanna nattam heta close wenawa http://<LINK>",smishing,si-en,unknown number,CERT post,2026-06,EXAMPLE - romanised Sinhala: tag language by hand
+EX-4,"Your OTP for the transaction of LKR 2,500.00 is <OTP>. Do not share this code with anyone.",ham,en,bank,own phone,2026-09,EXAMPLE - delete this row
+EX-5,"அம்மா இன்று இரவு 8 மணிக்கு வருவேன்",ham,ta,personal,own phone,2026-09,EXAMPLE - delete this row
