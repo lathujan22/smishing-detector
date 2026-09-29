@@ -4,6 +4,10 @@ Loads the UCI SMS Spam Collection and the Mendeley SMS Phishing Dataset
 (plus an optional multilingual training file), merges them, removes
 duplicates, maps labels and writes a fixed stratified 80/20 split.
 
+Machine-translated rows (data/raw/multilingual_mt.csv, made by
+notebooks/01_translate_nllb.ipynb from train.csv) are added to TRAIN ONLY,
+after the split, so no translation of a test message can leak into training.
+
 Run from the project root:
     python -m src.data_prep                 # build train/test
     python -m src.data_prep --check-real    # validate data/real_sms/real_test.csv
@@ -19,6 +23,7 @@ Label scheme
 from __future__ import annotations
 
 import argparse
+import random
 import re
 import sys
 from pathlib import Path
@@ -130,9 +135,29 @@ def load_multilingual() -> pd.DataFrame:
     out = pd.DataFrame({"text": df["text"], "label3": df["label"].map(normalise_label)})
     if "language" in df.columns:
         out["language"] = df["language"]
+    out["group"] = df["template_id"] if "template_id" in df.columns else [f"ml-{i}" for i in range(len(df))]
     out["source"] = "multilingual"
     print(f"  Multi     {path.name:<28} {len(out):>6} rows")
     return out
+
+
+def load_mt(test: pd.DataFrame) -> pd.DataFrame:
+    """Machine-translated rows -> train only. Drops any whose English source is in test."""
+    path = RAW / "multilingual_mt.csv"
+    cols = ["text", "label", "label3", "language", "source"]
+    if not path.exists():
+        return pd.DataFrame(columns=cols)
+    df = pd.read_csv(path, encoding="utf-8")
+    df["label3"] = df["label"].map(normalise_label)
+    df = df[df["label3"].notna() & df["text"].notna()]
+    if "src_text" in df.columns:  # safety: never keep a translation of a test message
+        df = df[~df["src_text"].map(dedupe_key).isin(set(test["text"].map(dedupe_key)))]
+    df["text"] = df["text"].astype(str).str.replace(r"\s+", " ", regex=True).str.strip()
+    df = df[~df["text"].map(dedupe_key).duplicated()]
+    df["label"] = (df["label3"] != "ham").astype(int)
+    df["source"] = "mt_nllb"
+    print(f"  MT        {path.name:<28} {len(df):>6} rows (train only)")
+    return df[cols]
 
 
 # ----------------------------------------------------------------- build
@@ -167,14 +192,38 @@ def build(raw_dir: Path = RAW, out_dir: Path = PROCESSED) -> tuple[pd.DataFrame,
         df["language"] = None
     df["language"] = df["language"].where(df["language"].isin(VALID_LANGS), df["text"].map(detect_language))
     df["label"] = (df["label3"] != "ham").astype(int)
-    df = df[["text", "label", "label3", "language", "source"]].reset_index(drop=True)
+    if "group" not in df.columns:
+        df["group"] = None
+    cols = ["text", "label", "label3", "language", "source"]
 
-    # stratify on label3 + language so rare languages land in both sets
-    strat = df["label3"] + "|" + df["language"]
+    # (a) English datasets: stratify on label3 + language
+    base = df[df["source"] != "multilingual"].reset_index(drop=True)
+    strat = base["label3"] + "|" + base["language"]
     counts = strat.value_counts()
-    strat = strat.where(strat.map(counts) >= 2, df["label3"])
-    train, test = train_test_split(df, test_size=TEST_SIZE, random_state=SEED, stratify=strat)
-    train, test = train.reset_index(drop=True), test.reset_index(drop=True)
+    strat = strat.where(strat.map(counts) >= 2, base["label3"])
+    tr_a, te_a = train_test_split(base, test_size=TEST_SIZE, random_state=SEED, stratify=strat)
+
+    # (b) multilingual templates: split by TEMPLATE so all variants of one
+    #     pattern stay on the same side (no near-copy leakage into test)
+    ml = df[df["source"] == "multilingual"].reset_index(drop=True)
+    test_groups: set = set()
+    for _, part in ml.groupby(["language", "label3"]):
+        groups = sorted(part["group"].astype(str).unique())
+        random.Random(SEED).shuffle(groups)
+        k = max(1, round(len(groups) * TEST_SIZE)) if len(groups) > 1 else 0
+        test_groups.update(groups[:k])
+    in_test = ml["group"].astype(str).isin(test_groups)
+    tr_b, te_b = ml[~in_test], ml[in_test]
+
+    train = pd.concat([tr_a, tr_b])[cols].sample(frac=1, random_state=SEED).reset_index(drop=True)
+    test = pd.concat([te_a, te_b])[cols].sample(frac=1, random_state=SEED).reset_index(drop=True)
+    df = df[cols]
+    log.append(f"Multilingual split by template: {ml['group'].nunique()} templates -> {len(test_groups)} held out for test")
+
+    mt = load_mt(test)
+    if len(mt):
+        train = pd.concat([train, mt], ignore_index=True).sample(frac=1, random_state=SEED).reset_index(drop=True)
+        log.append(f"Machine-translated rows added to TRAIN only: {len(mt)}  " + mt["language"].value_counts().to_dict().__repr__())
 
     out_dir.mkdir(parents=True, exist_ok=True)
     train.to_csv(out_dir / "train.csv", index=False, encoding="utf-8")

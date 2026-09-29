@@ -11,3 +11,6 @@ data/real_sms/*
 models/*
 !**/.gitkeep
 !data/real_sms/real_test_TEMPLATE.csv
+
+# local scratch
+.tmp/
