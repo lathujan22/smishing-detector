@@ -1,0 +1,103 @@
+# Brands, banks, telcos, couriers and authorities that scammers pretend to be.
+# --- Banks / wallets
+boc
+bank of ceylon
+peoples bank
+people's bank
+commercial bank
+combank
+sampath
+hnb
+hatton national
+nsb
+ndb
+seylan
+dfcc
+pan asia
+union bank
+cargills bank
+nations trust
+ntb
+amana bank
+hsbc
+standard chartered
+central bank
+cbsl
+ez cash
+ezcash
+mcash
+genie
+frimi
+ipay
+visa
+mastercard
+# --- Telcos
+dialog
+mobitel
+slt
+hutch
+airtel
+# --- Couriers / shops / global brands
+sl post
+slpost
+slkpost
+sri lanka post
+lanka post
+dhl
+fedex
+aramex
+pronto
+domex
+koombiyo
+daraz
+keells
+kapruka
+booking.com
+amazon
+whatsapp
+facebook
+google
+apple
+netflix
+# --- Government / authorities
+govpay
+e-government
+government
+ministry
+police
+traffic police
+customs
+inland revenue
+ird
+rmv
+ceb
+ceylon electricity
+water board
+aswesuma
+president
+court
+# --- Sinhala script
+බැංකුව
+මහජන බැංකුව
+ලංකා බැංකුව
+පොලිසිය
+පොලිසියෙන්
+රේගු
+තැපෑල
+විදුලිබල මණ්ඩලය
+ලංවිම
+අස්වැසුම
+රජයේ
+ආදායම් බදු
+# --- Tamil script
+வங்கி
+மக்கள் வங்கி
+இலங்கை வங்கி
+காவல்துறை
+பொலிஸ்
+சுங்க
+தபால்
+மின்சார சபை
+அஸ்வெசும
+அரசு
+வருமான வரி

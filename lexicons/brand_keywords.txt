@@ -1,0 +1,27 @@
+# Brand fragments: a link host containing one of these but NOT an official domain = look-alike.
+boc
+peoplesbank
+combank
+sampath
+hnb
+nsb
+seylan
+dfcc
+slpost
+lkpost
+post
+govpay
+gov
+dialog
+mobitel
+hutch
+daraz
+customs
+ceb
+aswesuma
+booking
+lktel
+police
+bank
+verify
+secure

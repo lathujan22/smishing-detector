@@ -11,14 +11,21 @@ Tick `[x]` as we go. One step at a time, in this chat.
 - [x] Architecture + checklist (`docs/`)
 
 ### Step 2 · Datasets
-- [ ] **YOU:** download UCI SMS Spam Collection → `data/raw/SMSSpamCollection`
+- [x] **YOU:** download UCI SMS Spam Collection → `data/raw/SMSSpamCollection`
       (https://archive.ics.uci.edu/dataset/228/sms+spam+collection)
-- [ ] **YOU:** download Mendeley SMS Phishing Dataset → `data/raw/Dataset_5971.csv`
+- [x] **YOU:** download Mendeley SMS Phishing Dataset → `data/raw/Dataset_5971.csv`
       (https://data.mendeley.com/datasets/f45bkkt8pr/1)
 - [x] `src/data_prep.py` — merge, clean duplicates, label map, stratified 80/20 split
-- [ ] Run `python -m src.data_prep` → `data/processed/train.csv`, `test.csv`, `data_report.txt`
+- [x] Run `python -m src.data_prep` → `data/processed/train.csv`, `test.csv`, `data_report.txt`
+      (with multilingual: 7,894 msgs → train 6,343 / test 1,551; 1,519 smishing, 692 spam, 5,683 ham)
 
 ### Step 3 · Real SMS test set (your proof)
+- [x] Google Form designed: `docs/GOOGLE_FORM.md` (trilingual, anonymous) + importer `src/import_form.py` (masks phone/NIC/ACC, dedupes)
+- [x] **YOU:** create the form + share - day 1: 57 responses → 50 unique real SMS (16 smishing / 30 spam / 4 ham)
+- [x] Researcher re-labelling in `data/real_sms/relabel.csv` (respondent vs researcher agreement 75%, kappa 0.55)
+- [ ] **YOU:** keep sharing - NEED: normal/OTP/bank-alert SMS (only 4 ham!), Sinhala & Tamil script, Tanglish
+- [ ] OCR screenshot-only responses (e.g. "Included in ss")
+- [ ] **YOU:** download responses → `data/real_sms/form_responses.csv` → `python -m src.import_form`
 - [ ] **YOU:** collect real SMS into `data/real_sms/real_test.csv` (template provided)
   - [ ] ≥ 80 real phishing/scam SMS (own phone, friends/family, Sri Lanka CERT / police / bank warning posts)
   - [ ] ≥ 80 real legitimate SMS (bank OTPs you received, delivery, telco, personal)
@@ -27,14 +34,23 @@ Tick `[x]` as we go. One step at a time, in this chat.
 - [ ] Never used for training — test only
 
 ### Step 4 · Multilingual training data
-- [ ] 300–600 Sinhala / Tamil / code-switched messages (translate English smishing + ham templates, native-speaker check)
-- [ ] `data/raw/multilingual_train.csv` (same columns as template)
+No open Sinhala SMS dataset exists; Tamil one (IEEE DataPort "Spam SMS in Dravidian Languages") is subscription-only.
+So we build it in two layers:
+- [x] Layer A - Sri Lankan messages, `python -m src.gen_multilingual` → `data/raw/multilingual_train.csv`
+      1,790 msgs from 416 patterns (206 templates x 8 fills + 210 one-off handwritten in `multilingual_handwritten.csv`)
+      si 470 · ta 470 · Singlish 425 · Tanglish 425 (smishing 976 / spam 172 / ham 642)
+      split by template in data_prep (84 patterns held out for test → no near-copy leakage)
+- [ ] **YOU / native speaker:** review wording - fix the TEMPLATES in `src/gen_multilingual.py` (one fix corrects all 8 variants), then re-run it + data_prep
+- [ ] Layer B - run `notebooks/01_translate_nllb.ipynb` on Colab GPU → `data/raw/multilingual_mt.csv` (~2,000 NLLB-200 translations of English TRAIN rows; added to TRAIN only, no test leakage)
+- [ ] **YOU:** spot-check `data/raw/mt_review_sample.csv` (25 per language), note error rate for the report
+- [ ] Optional: ask supervisor/library for IEEE DataPort access (Tamil + Tanglish real spam)
 
-### Step 5 · Preprocessing + features
-- [ ] `src/preprocess.py` — clean, script tag, emoji→token, URL/phone extract + mask
-- [ ] `lexicons/` urgency / impersonation / risky TLD + shorteners (EN + SI + TA)
-- [ ] `src/features.py` — flags + urgency / impersonation / link-risk sub-scores
-- [ ] Unit tests on 10 hand-made messages
+### Step 5 · Preprocessing + features ✅
+- [x] `src/preprocess.py` — normalise (keeps Sinhala ZWJ, strips "DIALOG WARNING - SPAM" leak), URL/phone/money/email/emoji extract + mask, language tag incl. Singlish/Tanglish
+- [x] `lexicons/` urgency · impersonation · credential · request · safety phrases · shorteners · risky TLDs · official domains · brand keywords (EN + SI + TA + romanised)
+- [x] `src/features.py` — 8 model flags + urgency / impersonation / link-risk sub-scores; `python -m src.features --build` → `data/processed/*_feat.csv`
+- [x] Unit tests: 10 hand-made messages, all pass (`python -m unittest -v tests.test_features`)
+- [x] Sanity check `results/feature_summary.txt`: smishing > spam > ham on every feature (real SMS link-risk 0.67 / 0.16 / 0.05); language detection vs researcher 93%
 
 ### Step 6 · Baselines
 - [ ] TF-IDF + Naive Bayes, SVM, Random Forest
