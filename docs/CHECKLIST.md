@@ -58,7 +58,10 @@ So we build it in two layers:
 - [x] `src/evaluate.py` — Acc/P/R/F1/ROC-AUC/FPR, per-language split, McNemar helper
 - [x] `results/baselines.csv`, `results/baselines_by_language.csv`
 - Best = SVM: CV F1 0.976 · test F1 0.922 · EN F1 0.971 (FPR 0.3%) · SI/TA recall 100% but FPR 26-31% on UNSEEN normal patterns · real SMS F1 0.971
-- [ ] Fix SI/TA false alarms: run NLLB translation notebook (adds ~800 translated normal msgs) + collect real SI/TA normal SMS
+- [ ] Fix SI/TA false alarms BEFORE deep models:
+  - [ ] **YOU:** Colab → `notebooks/01_translate_nllb.ipynb` (upload train.csv, T4 GPU, ~15 min) → put `multilingual_mt.csv` + `mt_review_sample.csv` in `data/raw/`
+  - [ ] **YOU:** fill `data/real_sms/my_messages.txt` (or SMS Backup & Restore .xml) with real normal SI/TA/EN SMS → `src/import_bulk.py`
+  - [ ] Re-run data_prep → features → baselines, compare SI/TA false-alarm rate
 - Note: added 44 extra SI/TA/Singlish/Tanglish normal templates (bank alerts, bills, tickets, school, family) → multilingual set 2,151 msgs / 474 templates
 
 ### Step 7 · Deep models (Colab GPU)
