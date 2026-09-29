@@ -360,6 +360,87 @@ T += [("ta-en", "roman", "smishing", "bank", [
  ])]
 
 
+# ============================ EXTRA NORMAL (ham) PATTERNS ============================
+# Added after Step 6 showed Tamil false alarms on unseen bank/courier/money ham patterns:
+# normal messages must cover the same topics scams use (bank, parcel, money, bills).
+T += [("si", "native", "ham", "bank_alert", [
+ "{BANK}: ඔබගේ කාඩ්පතෙන් ({ACC}) රු. {CENTS}ක් {SHOP} හිදී ගෙවා ඇත. ශේෂය රු. {CENTS}.",
+ "{BANK}: ඔබගේ ණය වාරිකය රු. {CENTS} {DATE} දිනට ගෙවිය යුතුය. ස්තූතියි.",
+ "ඔබගේ ගිණුමෙන් ({ACC}) රු. {CENTS}ක් අරමුදල් හුවමාරුවක් ලෙස බැර කරන ලදී. - {BANK}",
+ "{BANK}: ඔබ ඉල්ලූ නව ඩෙබිට් කාඩ්පත ශාඛාවෙන් ලබා ගත හැක. හැඳුනුම්පත රැගෙන එන්න.",
+ ]), ("si", "native", "ham", "service2", [
+ "ඔබගේ ජල බිල්පත රු. {CENTS}ක් වේ. ගෙවීම ලැබුණි. ස්තූතියි - ජල සම්පාදන මණ්ඩලය.",
+ "ඔබගේ දුම්රිය ආසනය වෙන් කර ඇත. {CITY_SI} සිට {DATE} {TIME}ට. ආසන අංකය {MIN}.",
+ "{COURIER}: ඔබගේ පාර්සලය සාර්ථකව බාර දෙන ලදී. ස්තූතියි.",
+ "ඔබගේ {TELCO} ගිණුමට {GB}GB දත්ත පැකේජය සක්‍රීය විය. වලංගු කාලය දින 30යි.",
+ ]), ("si", "native", "ham", "education_gov", [
+ "පාසල් නිවේදනය: හෙට ({DATE}) දෙමාපිය රැස්වීම {TIME}ට පැවැත්වේ.",
+ "ඔබගේ විභාග ප්‍රතිඵල නිකුත් කර ඇත. විස්තර සඳහා පාසල අමතන්න.",
+ "ඡන්ද හිමි නාමලේඛනයේ ඔබගේ නම ඇතුළත් කර ඇත. - මැතිවරණ කොමිෂන් සභාව",
+ "අද රාත්‍රී වැසි තත්ත්වය හේතුවෙන් ප්‍රවේශම් වන්න. - ආපදා කළමනාකරණ මධ්‍යස්ථානය",
+ ]), ("si", "native", "ham", "family", [
+ "අම්මා, මම රු. {SAMT}ක් ඔයාගේ ගිණුමට දැම්මා. ලැබුණද?",
+ "තාත්තා හෙට {CITY_SI} යනවා. ඔයාට මොනවා හරි ගේන්න ඕනද?",
+ "අද රෑ කෑම එපා, මම එළියෙන් කාලා එන්නම්.",
+ "ඔයාගේ පාර්සලය ගෙදරට ආවා. මම ගත්තා.",
+ ])]
+T += [("ta", "native", "ham", "bank_alert", [
+ "{BANK}: உங்கள் அட்டை ({ACC}) மூலம் {SHOP} இல் ரூ. {CENTS} செலுத்தப்பட்டது. மீதி ரூ. {CENTS}.",
+ "{BANK}: உங்கள் கடன் தவணை ரூ. {CENTS} {DATE} அன்று செலுத்த வேண்டும். நன்றி.",
+ "உங்கள் கணக்கிலிருந்து ({ACC}) ரூ. {CENTS} நிதி பரிமாற்றமாக பற்று வைக்கப்பட்டது. - {BANK}",
+ "{BANK}: நீங்கள் கோரிய புதிய டெபிட் அட்டையை கிளையில் பெற்றுக்கொள்ளலாம். அடையாள அட்டையை கொண்டு வாருங்கள்.",
+ "உங்கள் கணக்கில் ({ACC}) ரூ. {CENTS} வைப்பு செய்யப்பட்டது. தற்போதைய மீதி ரூ. {CENTS}. - {BANK}",
+ ]), ("ta", "native", "ham", "service2", [
+ "உங்கள் நீர் கட்டணம் ரூ. {CENTS} பெறப்பட்டது. நன்றி - நீர் வழங்கல் சபை.",
+ "உங்கள் ரயில் இருக்கை முன்பதிவு செய்யப்பட்டது. {CITY_TA} இலிருந்து {DATE} {TIME} மணிக்கு.",
+ "{COURIER}: உங்கள் பார்சல் வெற்றிகரமாக ஒப்படைக்கப்பட்டது. நன்றி.",
+ "{COURIER}: உங்கள் பார்சல் {CITY_TA} கிளைக்கு வந்துள்ளது. கண்காணிப்பு எண் {TRK}.",
+ "உங்கள் {TELCO} கணக்கில் {GB}GB டேட்டா தொகுப்பு செயல்படுத்தப்பட்டது. 30 நாட்கள் செல்லுபடியாகும்.",
+ ]), ("ta", "native", "ham", "education_gov", [
+ "பாடசாலை அறிவித்தல்: நாளை ({DATE}) பெற்றோர் கூட்டம் {TIME} மணிக்கு நடைபெறும்.",
+ "உங்கள் பரீட்சை பெறுபேறுகள் வெளியிடப்பட்டுள்ளன. விவரங்களுக்கு பாடசாலையை தொடர்பு கொள்ளவும்.",
+ "வாக்காளர் பட்டியலில் உங்கள் பெயர் சேர்க்கப்பட்டுள்ளது. - தேர்தல்கள் ஆணைக்குழு",
+ "இன்று இரவு கனமழை எதிர்பார்க்கப்படுகிறது. அவதானமாக இருங்கள். - அனர்த்த முகாமைத்துவ நிலையம்",
+ ]), ("ta", "native", "ham", "family", [
+ "அம்மா, உங்கள் கணக்கில் ரூ. {SAMT} போட்டேன். கிடைத்ததா?",
+ "அப்பா நாளை {CITY_TA} போகிறார். உனக்கு ஏதாவது வேண்டுமா?",
+ "இன்று இரவு சாப்பாடு வேண்டாம், நான் வெளியே சாப்பிட்டு வருகிறேன்.",
+ "உன் பார்சல் வீட்டுக்கு வந்துவிட்டது. நான் வாங்கி வைத்தேன்.",
+ ])]
+T += [("si-en", "roman", "ham", "bank_alert", [
+ "{BANK}: Rs.{CENTS} paid at {SHOP} using card {ACC}. Bal Rs.{CENTS}. Call 24hr hotline if not you.",
+ "Loan installment Rs.{CENTS} due on {DATE}. Thank you - {BANK}",
+ "Oyage account ekata Rs.{SAMT} damma. Balala kiyanna.",
+ "Fund transfer of Rs.{CENTS} from A/C {ACC} successful. Ref {OTP}. - {BANK}",
+ ]), ("si-en", "roman", "ham", "service2", [
+ "Train seat eka book una. {CITY} idan {DATE} {TIME} ta. Seat no {MIN}.",
+ "{COURIER}: parcel eka successfully deliver kala. Thank you.",
+ "{TELCO}: {GB}GB data package activated. Valid 30 days.",
+ "Water bill Rs.{CENTS} received. Thank you - NWSDB",
+ ]), ("si-en", "roman", "ham", "family", [
+ "Parcel eka gedara awa, mama gaththa.",
+ "Ada raa kanna epa, mama eliyen kala ennam.",
+ "Thaththa heta {CITY} yanawa. Monawa hari ona da?",
+ "School eke parents meeting eka heta {TIME} ta.",
+ ])]
+T += [("ta-en", "roman", "ham", "bank_alert", [
+ "{BANK}: Rs.{CENTS} paid at {SHOP} using card {ACC}. Bal Rs.{CENTS}. Call 24hr hotline if not you.",
+ "Loan installment Rs.{CENTS} due on {DATE}. Thank you - {BANK}",
+ "Unga account-ku Rs.{SAMT} pottuten. Paathu sollunga.",
+ "Fund transfer of Rs.{CENTS} from A/C {ACC} successful. Ref {OTP}. - {BANK}",
+ ]), ("ta-en", "roman", "ham", "service2", [
+ "Train seat book aayiduchu. {CITY} la irundhu {DATE} {TIME} ku. Seat no {MIN}.",
+ "{COURIER}: parcel successfully deliver pannitom. Thank you.",
+ "{TELCO}: {GB}GB data package activated. Valid 30 days.",
+ "Water bill Rs.{CENTS} received. Thank you - NWSDB",
+ ]), ("ta-en", "roman", "ham", "family", [
+ "Parcel veetuku vandhuduchu, naan vaangi vechiruken.",
+ "Inniku night saapadu vendaam, naan veliya saapittu varen.",
+ "Appa naalaikku {CITY} poraaru. Unakku edhavadhu venuma?",
+ "School la parents meeting naalaikku {TIME} manikku.",
+ ])]
+
+
 def main() -> None:
     rows, seen = [], set()
     for lang, script, label, cat, temps in T:

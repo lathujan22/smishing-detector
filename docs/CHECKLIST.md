@@ -52,10 +52,14 @@ So we build it in two layers:
 - [x] Unit tests: 10 hand-made messages, all pass (`python -m unittest -v tests.test_features`)
 - [x] Sanity check `results/feature_summary.txt`: smishing > spam > ham on every feature (real SMS link-risk 0.67 / 0.16 / 0.05); language detection vs researcher 93%
 
-### Step 6 · Baselines
-- [ ] TF-IDF + Naive Bayes, SVM, Random Forest
-- [ ] 10-fold stratified CV on train, final score on test
-- [ ] `results/baselines.csv`
+### Step 6 · Baselines ✅
+- [x] `src/baselines.py` — TF-IDF (word 1-2 + char 2-5 grams) + Naive Bayes, linear SVM, Random Forest, class-balanced
+- [x] 10-fold **grouped** stratified CV (template variants never split across folds), final score on test + real SMS
+- [x] `src/evaluate.py` — Acc/P/R/F1/ROC-AUC/FPR, per-language split, McNemar helper
+- [x] `results/baselines.csv`, `results/baselines_by_language.csv`
+- Best = SVM: CV F1 0.976 · test F1 0.922 · EN F1 0.971 (FPR 0.3%) · SI/TA recall 100% but FPR 26-31% on UNSEEN normal patterns · real SMS F1 0.971
+- [ ] Fix SI/TA false alarms: run NLLB translation notebook (adds ~800 translated normal msgs) + collect real SI/TA normal SMS
+- Note: added 44 extra SI/TA/Singlish/Tanglish normal templates (bank alerts, bills, tickets, school, family) → multilingual set 2,151 msgs / 474 templates
 
 ### Step 7 · Deep models (Colab GPU)
 - [ ] XLM-R SentencePiece tokenisation

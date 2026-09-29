@@ -1,0 +1,4 @@
+model,cv_accuracy,cv_precision,cv_recall,cv_f1,cv_roc_auc,cv_f1_std,test_acc,test_precision,test_recall,test_f1,test_roc_auc,test_fpr,real_acc,real_precision,real_recall,real_f1,real_fpr,real_smishing_recall,train_seconds
+NaiveBayes,0.9218,0.805,0.9477,0.8697,0.9805,0.0309,0.9006,0.7264,0.9593,0.8268,0.9768,0.1187,0.8727,0.9583,0.902,0.9293,0.5,0.9412,32.7
+SVM,0.9866,0.9787,0.9725,0.9755,0.9963,0.0108,0.9591,0.8727,0.9771,0.922,0.9967,0.0468,0.9455,0.9444,1.0,0.9714,0.75,1.0,37.9
+RandomForest,0.9757,0.9818,0.9291,0.9542,0.9952,0.0158,0.9509,0.8889,0.916,0.9023,0.9937,0.0376,0.9091,0.96,0.9412,0.9505,0.5,0.8824,124.9
