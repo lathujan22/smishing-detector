@@ -141,21 +141,43 @@ def load_multilingual() -> pd.DataFrame:
     return out
 
 
+SI_SPLIT = re.compile("(\\S*\u0dca) ([\u0dba\u0dbb]\\S*)")
+
+
+def fix_sinhala_joiner(texts: pd.Series) -> pd.Series:
+    """NLLB writes ප්‍රමාණය as 'ප් රමාණය' (space instead of the zero-width joiner that
+    makes yansaya/rakaransaya). Re-join when the fragment after the space never occurs
+    as a word on its own in the corpus (so real word breaks like 'පණිවිඩයක් යවන්න' stay)."""
+    words = pd.Series(" ".join(texts.astype(str)).split()).value_counts()
+    split_frags = pd.Series([b for t in texts.astype(str) for _, b in SI_SPLIT.findall(t)]).value_counts()
+
+    def join(m):
+        a, b = m.group(1), m.group(2)
+        standalone = words.get(b, 0) - split_frags.get(b, 0)
+        lone = len(b.rstrip(".,!?:;")) <= 1
+        return f"{a}\u200d{b}" if len(a) <= 2 or lone or standalone <= 0 else m.group(0)
+
+    return texts.astype(str).map(lambda t: SI_SPLIT.sub(join, t))
+
+
 def load_mt(test: pd.DataFrame) -> pd.DataFrame:
     """Machine-translated rows -> train only. Drops any whose English source is in test."""
     path = RAW / "multilingual_mt.csv"
-    cols = ["text", "label", "label3", "language", "source"]
+    cols = ["text", "label", "label3", "language", "source", "group"]
     if not path.exists():
         return pd.DataFrame(columns=cols)
     df = pd.read_csv(path, encoding="utf-8")
     df["label3"] = df["label"].map(normalise_label)
     df = df[df["label3"].notna() & df["text"].notna()]
+    si = df["language"].eq("si")
+    df.loc[si, "text"] = fix_sinhala_joiner(df.loc[si, "text"])
     if "src_text" in df.columns:  # safety: never keep a translation of a test message
         df = df[~df["src_text"].map(dedupe_key).isin(set(test["text"].map(dedupe_key)))]
     df["text"] = df["text"].astype(str).str.replace(r"\s+", " ", regex=True).str.strip()
     df = df[~df["text"].map(dedupe_key).duplicated()]
     df["label"] = (df["label3"] != "ham").astype(int)
     df["source"] = "mt_nllb"
+    df["group"] = "src:" + df["src_text"].map(dedupe_key) if "src_text" in df.columns else [f"mt{i}" for i in range(len(df))]
     print(f"  MT        {path.name:<28} {len(df):>6} rows (train only)")
     return df[cols]
 
@@ -194,7 +216,8 @@ def build(raw_dir: Path = RAW, out_dir: Path = PROCESSED) -> tuple[pd.DataFrame,
     df["label"] = (df["label3"] != "ham").astype(int)
     if "group" not in df.columns:
         df["group"] = None
-    cols = ["text", "label", "label3", "language", "source"]
+    df["group"] = df["group"].where(df["source"] == "multilingual", "src:" + df["key"])
+    cols = ["text", "label", "label3", "language", "source", "group"]
 
     # (a) English datasets: stratify on label3 + language
     base = df[df["source"] != "multilingual"].reset_index(drop=True)

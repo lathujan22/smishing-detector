@@ -59,7 +59,11 @@ So we build it in two layers:
 - [x] `results/baselines.csv`, `results/baselines_by_language.csv`
 - Best = SVM: CV F1 0.976 · test F1 0.922 · EN F1 0.971 (FPR 0.3%) · SI/TA recall 100% but FPR 26-31% on UNSEEN normal patterns · real SMS F1 0.971
 - [ ] Fix SI/TA false alarms BEFORE deep models:
-  - [ ] **YOU:** Colab → `notebooks/01_translate_nllb.ipynb` (upload train.csv, T4 GPU, ~15 min) → put `multilingual_mt.csv` + `mt_review_sample.csv` in `data/raw/`
+  - [x] **YOU:** Colab → `notebooks/01_translate_nllb.ipynb` → 2,781 NLLB translations (si 1,391 / ta 1,390; 1,740 ham) added to TRAIN only (train 6,666 → 9,447)
+    - Sinhala joiner fix: NLLB wrote 'ප් රමාණය' for 'ප්‍රමාණය' in 31% of rows → auto re-joined (5% left)
+    - CV groups: each translation grouped with its English source
+    - Result: RF SI false alarms 26% → 9%, TA 21% → 16%; SVM TA 31% → 21% (SI 26% → 33%). Remaining false alarms are mostly Singlish/Tanglish (45/55) - MT can't produce romanised text
+  - [ ] **YOU:** spot-check `data/raw/mt_review_sample.csv` (fill ok_yes_no for 60 rows)
   - [ ] **YOU:** fill `data/real_sms/my_messages.txt` (or SMS Backup & Restore .xml) with real normal SI/TA/EN SMS → `src/import_bulk.py`
   - [ ] Re-run data_prep → features → baselines, compare SI/TA false-alarm rate
 - Note: added 44 extra SI/TA/Singlish/Tanglish normal templates (bank alerts, bills, tickets, school, family) → multilingual set 2,151 msgs / 474 templates

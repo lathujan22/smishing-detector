@@ -58,6 +58,8 @@ def models() -> dict[str, Pipeline]:
 def cv_groups(tr: pd.DataFrame) -> np.ndarray:
     """CV groups: all variants of one multilingual template share a group, so a
     pattern never sits in both the training and validation fold (same rule as data_prep)."""
+    if "group" in tr.columns and tr["group"].notna().all():
+        return tr["group"].astype(str).to_numpy()          # written by data_prep (templates + MT sources)
     ml = ROOT / "data" / "raw" / "multilingual_train.csv"
     key = lambda t: " ".join(str(t).split()).lower()
     tid = {}
