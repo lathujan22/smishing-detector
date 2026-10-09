@@ -74,6 +74,9 @@ def figure(res, title, caption, fname):
 
 
 if __name__ == "__main__":
+    trn = pd.read_csv(ROOT / "data" / "processed" / "train_feat.csv")
+    figure(evaluate(trn, "label3"), "Table: Baseline results on the training set (n = 9,447)",
+           "Figure: Confusion matrices of the baseline models on the training set.", "fig_train_results.png")
     te = pd.read_csv(ROOT / "data" / "processed" / "test_feat.csv")
     rl = pd.read_csv(ROOT / "data" / "processed" / "real_test_feat.csv")
     figure(evaluate(te, "label3"), "Table: Baseline results on the held-out test set (n = 1,589)",
