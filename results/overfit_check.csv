@@ -1,0 +1,9 @@
+model,setting,train_f1,cv_f1,test_f1,gap_train_cv
+SVM,C=0.05,98.47,94.3,90.87,4.17
+SVM,C=0.1,99.34,95.77,91.89,3.56
+SVM,C=0.5 (used),99.98,96.85,92.44,3.13
+SVM,C=2,99.98,97.02,92.87,2.96
+RandomForest,default (used),100.0,94.9,93.09,5.1
+RandomForest,min_leaf=3,98.36,94.42,91.39,3.94
+RandomForest,"min_leaf=5, depth=40",97.58,93.89,90.57,3.69
+RandomForest,"min_leaf=10, depth=25",96.28,92.49,90.48,3.79
