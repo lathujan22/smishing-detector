@@ -1,0 +1,9 @@
+model,train_f1,cv_f1,test_f1,gap_train_test
+"SVM current (C=0.5, 50k feat)",99.93,96.62,93.01,6.92
+"SVM C=0.1, 10k feat",98.55,95.34,93.58,4.98
+"SVM C=0.05, 5k feat",97.46,94.71,91.98,5.48
+"LogReg C=1, 10k feat",98.45,94.76,92.33,6.12
+"LogReg C=0.5, 5k feat",97.21,93.98,91.76,5.46
+RF current (full trees),100.0,94.93,92.8,7.2
+"RF depth=30, leaf=2, 50% bootstrap",97.94,94.04,89.03,8.91
+"RF depth=20, leaf=3, 50% bootstrap, 3k",97.05,92.89,89.86,7.19
