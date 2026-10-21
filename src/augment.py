@@ -89,3 +89,32 @@ def smote(X, y, k: int = 5, seed: int = 42):
         return sp.vstack([X, new]).tocsr(), np.concatenate([y, np.full(n_new, minority)])
     new = Xm[base] + lam[:, None] * (Xm[pick] - Xm[base])
     return np.vstack([X, new]), np.concatenate([y, np.full(n_new, minority)])
+
+
+def smote_multi(X, y, k: int = 5, seed: int = 42):
+    """Multi-class SMOTE: every class is oversampled up to the size of the largest class
+    (synthetic samples interpolate between same-class cosine neighbours). Training data only."""
+    y = np.asarray(y)
+    classes, counts = np.unique(y, return_counts=True)
+    target = counts.max()
+    Xs, ys = [X], [y]
+    for c, n in zip(classes, counts):
+        if n == target:
+            continue
+        idx = np.where(y == c)[0]
+        Xc = X[idx]
+        rng = np.random.RandomState(seed + int(c))
+        nn = NearestNeighbors(n_neighbors=min(k + 1, len(idx)), metric="cosine", algorithm="brute").fit(Xc)
+        neigh = nn.kneighbors(Xc, return_distance=False)[:, 1:]
+        m = target - n
+        base = rng.randint(0, len(idx), m)
+        pick = neigh[base, rng.randint(0, neigh.shape[1], m)]
+        lam = rng.rand(m)
+        if sp.issparse(X):
+            A, B = Xc[base], Xc[pick]
+            Xs.append(A + sp.diags(lam) @ (B - A))
+        else:
+            Xs.append(Xc[base] + lam[:, None] * (Xc[pick] - Xc[base]))
+        ys.append(np.full(m, c))
+    X2 = sp.vstack(Xs).tocsr() if sp.issparse(X) else np.vstack(Xs)
+    return X2, np.concatenate(ys)
