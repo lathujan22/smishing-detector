@@ -1,0 +1,41 @@
+model,set,lang,n,n_scam,reliable,macro_f1,scam_recall,nonscam_to_scam_fpr,normal_to_scam,promo_to_scam
+LinearSVC,cv (validation),EN,5220,459,True,87.94,82.14,1.13,0.25,9.77
+LinearSVC,cv (validation),SI,2101,762,True,86.06,92.65,3.73,1.53,19.28
+LinearSVC,cv (validation),TA,2112,768,True,84.85,88.93,3.79,1.7,18.79
+LinearSVC,held-out test,EN,869,76,True,88.76,85.53,1.01,0.0,10.96
+LinearSVC,held-out test,SI,351,129,True,90.48,89.92,5.41,5.13,7.41
+LinearSVC,held-out test,TA,354,131,True,86.91,96.18,0.9,0.51,3.7
+LinearSVC,real benchmark,EN,89,12,True,71.8,91.67,14.29,30.43,7.41
+LinearSVC,real benchmark,SI,67,17,True,73.69,88.24,24.0,8.33,28.95
+LinearSVC,real benchmark,TA,4,0,False,33.33,0.0,0.0,,0.0
+LinearSVC,real benchmark,mixed,3,0,False,55.56,0.0,33.33,0.0,50.0
+LogisticRegression,cv (validation),EN,5220,459,True,86.95,82.14,1.43,0.16,13.86
+LogisticRegression,cv (validation),SI,2101,762,True,83.79,93.04,4.26,2.05,19.88
+LogisticRegression,cv (validation),TA,2112,768,True,83.93,88.8,3.87,1.78,18.79
+LogisticRegression,held-out test,EN,869,76,True,89.21,84.21,0.88,0.0,9.59
+LogisticRegression,held-out test,SI,351,129,True,89.13,88.37,6.76,7.18,3.7
+LogisticRegression,held-out test,TA,354,131,True,85.11,93.89,3.14,3.06,3.7
+LogisticRegression,real benchmark,EN,89,12,True,66.84,91.67,20.78,39.13,12.96
+LogisticRegression,real benchmark,SI,67,17,True,73.69,94.12,26.0,25.0,26.32
+LogisticRegression,real benchmark,TA,4,0,False,33.33,0.0,0.0,,0.0
+LogisticRegression,real benchmark,mixed,3,0,False,55.56,0.0,33.33,0.0,50.0
+RandomForest,cv (validation),EN,5220,459,True,84.27,73.86,1.11,0.16,10.45
+RandomForest,cv (validation),SI,2101,762,True,81.7,91.86,3.21,0.09,25.3
+RandomForest,cv (validation),TA,2112,768,True,79.61,92.19,3.57,0.25,27.27
+RandomForest,held-out test,EN,869,76,True,86.25,85.53,1.01,0.0,10.96
+RandomForest,held-out test,SI,351,129,True,86.6,85.27,1.8,0.0,14.81
+RandomForest,held-out test,TA,354,131,True,77.71,90.84,2.24,0.0,18.52
+RandomForest,real benchmark,EN,89,12,True,69.25,100.0,14.29,26.09,9.26
+RandomForest,real benchmark,SI,67,17,True,76.51,76.47,16.0,0.0,21.05
+RandomForest,real benchmark,TA,4,0,False,22.22,0.0,50.0,,50.0
+RandomForest,real benchmark,mixed,3,0,False,66.67,0.0,0.0,0.0,0.0
+"GradientBoosting (sklearn, not XGBoost)",cv (validation),EN,5220,459,True,85.83,81.92,1.6,0.35,13.86
+"GradientBoosting (sklearn, not XGBoost)",cv (validation),SI,2101,762,True,82.27,94.75,4.93,1.88,26.51
+"GradientBoosting (sklearn, not XGBoost)",cv (validation),TA,2112,768,True,83.82,94.27,5.13,2.37,24.85
+"GradientBoosting (sklearn, not XGBoost)",held-out test,EN,869,76,True,87.45,85.53,1.39,0.56,9.59
+"GradientBoosting (sklearn, not XGBoost)",held-out test,SI,351,129,True,88.38,94.57,7.66,6.15,18.52
+"GradientBoosting (sklearn, not XGBoost)",held-out test,TA,354,131,True,80.19,94.66,3.59,1.53,18.52
+"GradientBoosting (sklearn, not XGBoost)",real benchmark,EN,89,12,True,60.62,58.33,18.18,30.43,12.96
+"GradientBoosting (sklearn, not XGBoost)",real benchmark,SI,67,17,True,75.95,82.35,18.0,16.67,18.42
+"GradientBoosting (sklearn, not XGBoost)",real benchmark,TA,4,0,False,28.57,0.0,25.0,,25.0
+"GradientBoosting (sklearn, not XGBoost)",real benchmark,mixed,3,0,False,66.67,0.0,0.0,0.0,0.0
