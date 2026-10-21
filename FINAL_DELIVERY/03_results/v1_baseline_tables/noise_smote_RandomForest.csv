@@ -1,0 +1,5 @@
+model,setting,train_f1,cv_f1,test_f1,test_fpr,noisy_test_f1,real_f1,SI_f1,TA_f1,SI_fpr,TA_fpr,gap_train_test
+RandomForest,no augmentation,100.0,94.05,93.68,1.59,92.88,96.3,90.5,91.71,8.89,8.16,6.32
+RandomForest,+ noise,100.0,94.46,92.68,2.68,92.48,95.74,88.42,87.83,17.78,16.33,7.32
+RandomForest,+ SMOTE,100.0,94.07,93.28,2.34,91.93,96.3,91.71,88.42,8.89,16.33,6.72
+RandomForest,+ noise + SMOTE,100.0,94.45,94.21,2.26,93.23,96.3,93.48,90.16,8.89,16.33,5.79
