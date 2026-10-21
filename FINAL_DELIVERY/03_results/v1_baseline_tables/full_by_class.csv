@@ -1,0 +1,19 @@
+Model,Set,Class,n,correct %
+NaiveBayes,"Test (1,589)",smishing,265,98.5
+NaiveBayes,"Test (1,589)",spam,128,81.2
+NaiveBayes,"Test (1,589)",ham,1196,88.9
+NaiveBayes,Real SMS (108),smishing,19,89.5
+NaiveBayes,Real SMS (108),spam,73,76.7
+NaiveBayes,Real SMS (108),ham,16,50.0
+SVM,"Test (1,589)",smishing,265,100.0
+SVM,"Test (1,589)",spam,128,93.8
+SVM,"Test (1,589)",ham,1196,95.4
+SVM,Real SMS (108),smishing,19,100.0
+SVM,Real SMS (108),spam,73,97.3
+SVM,Real SMS (108),ham,16,50.0
+RandomForest,"Test (1,589)",smishing,265,98.5
+RandomForest,"Test (1,589)",spam,128,80.5
+RandomForest,"Test (1,589)",ham,1196,97.9
+RandomForest,Real SMS (108),smishing,19,89.5
+RandomForest,Real SMS (108),spam,73,98.6
+RandomForest,Real SMS (108),ham,16,68.8
