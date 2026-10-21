@@ -16,3 +16,15 @@ models/*
 .tmp/
 # per-message predictions contain real SMS text - keep private
 results/pred_*
+
+# per-message predictions / errors contain real SMS text
+results/*/pred_*
+results/**/pred_*
+*.zip
+
+# model weights (too large for GitHub; keep local)
+*.pt
+*.safetensors
+*.joblib
+# registry contains real collected SMS text
+data/v2/registry.csv
