@@ -1,0 +1,203 @@
+{
+ "note": "Demo messages written for testing the web application. They are NOT real SMS and are NOT part of the training, validation, test or real-benchmark data. Links and numbers are fictitious.",
+ "samples": [
+  {
+   "id": "S01",
+   "language": "en",
+   "expected": "scam",
+   "text": "Your bank account has been temporarily blocked due to suspicious activity. Verify your details within 24 hours: http://secure-verify-lk.top/login"
+  },
+  {
+   "id": "S02",
+   "language": "en",
+   "expected": "scam",
+   "text": "Congratulations! You have won Rs. 500,000 in our anniversary lucky draw. Pay the Rs. 2,500 processing fee to claim: bit.ly/claim-prize-now"
+  },
+  {
+   "id": "S03",
+   "language": "en",
+   "expected": "scam",
+   "text": "Courier notice: your parcel is on hold due to an unpaid customs fee of Rs. 350. Pay now to avoid return: https://parcel-lk-delivery.xyz/pay"
+  },
+  {
+   "id": "S04",
+   "language": "en",
+   "expected": "promotional",
+   "text": "Weekend deal! Get 20% off all pizzas this Saturday and Sunday. Order on our app. T&C apply. To opt out SMS STOP to 7777"
+  },
+  {
+   "id": "S05",
+   "language": "en",
+   "expected": "promotional",
+   "text": "Recharge Rs. 499 today and get 15GB anytime data valid for 30 days. Dial #123# to activate. T&C apply."
+  },
+  {
+   "id": "S06",
+   "language": "en",
+   "expected": "promotional",
+   "text": "Mega sale at our stores: up to 50% off on electronics until 31st October. Visit your nearest branch."
+  },
+  {
+   "id": "S07",
+   "language": "en",
+   "expected": "normal",
+   "text": "Your OTP for login is 482913. It is valid for 5 minutes. Do not share this code with anyone."
+  },
+  {
+   "id": "S08",
+   "language": "en",
+   "expected": "normal",
+   "text": "Hi, I'll be late today, the bus is stuck in traffic. Please start dinner without me."
+  },
+  {
+   "id": "S09",
+   "language": "en",
+   "expected": "normal",
+   "text": "Your account was credited with Rs. 25,000.00 on 18/10/2026. Available balance Rs. 61,240.50."
+  },
+  {
+   "id": "S10",
+   "language": "si",
+   "expected": "scam",
+   "text": "ඔබගේ බැංකු ගිණුම තාවකාලිකව අත්හිටුවා ඇත. පැය 24 ක් ඇතුළත ඔබගේ විස්තර තහවුරු කරන්න: http://bank-verify-lk.top"
+  },
+  {
+   "id": "S11",
+   "language": "si",
+   "expected": "scam",
+   "text": "සුබ පැතුම්! ඔබ රු. 250,000 ක ත්‍යාගයක් දිනා ඇත. ත්‍යාගය ලබා ගැනීමට රු. 1,500 ක ගාස්තුවක් ගෙවන්න: bit.ly/sl-prize"
+  },
+  {
+   "id": "S12",
+   "language": "si",
+   "expected": "scam",
+   "text": "ඔබගේ පාර්සලය රේගු ගාස්තු නොගෙවීම නිසා රඳවා ඇත. වහාම ගෙවන්න: https://lk-parcel-pay.xyz"
+  },
+  {
+   "id": "S13",
+   "language": "si",
+   "expected": "promotional",
+   "text": "විශේෂ දීමනාව! මෙම සති අන්තයේ සියලුම ඇඳුම් සඳහා 30% ක වට්ටමක්. ඔබගේ ළඟම ශාඛාවට පැමිණෙන්න. කොන්දේසි අදාළයි."
+  },
+  {
+   "id": "S14",
+   "language": "si",
+   "expected": "promotional",
+   "text": "රු. 399 ක් රීලෝඩ් කර දින 30 ක් සඳහා 10GB ඩේටා ලබා ගන්න. සක්‍රිය කිරීමට #456# අමතන්න."
+  },
+  {
+   "id": "S15",
+   "language": "si",
+   "expected": "promotional",
+   "text": "අපගේ නව ආපනශාලාව විවෘත කර ඇත! පළමු සතිය තුළ සියලුම ආහාර සඳහා 15% වට්ටමක්."
+  },
+  {
+   "id": "S16",
+   "language": "si",
+   "expected": "normal",
+   "text": "ඔබගේ OTP අංකය 735120 වේ. මෙය කිසිවෙකුට ලබා නොදෙන්න."
+  },
+  {
+   "id": "S17",
+   "language": "si",
+   "expected": "normal",
+   "text": "අම්මා, මම හවස 6 ට විතර ගෙදර එනවා. කෑම හදන්න එපා."
+  },
+  {
+   "id": "S18",
+   "language": "si",
+   "expected": "normal",
+   "text": "ඔබගේ ගිණුමට රු. 12,500.00 ක් බැර කර ඇත. ස්තූතියි."
+  },
+  {
+   "id": "S19",
+   "language": "ta",
+   "expected": "scam",
+   "text": "உங்கள் வங்கி கணக்கு தற்காலிகமாக முடக்கப்பட்டுள்ளது. 24 மணி நேரத்திற்குள் உங்கள் விவரங்களை உறுதிப்படுத்தவும்: http://verify-bank-lk.top"
+  },
+  {
+   "id": "S20",
+   "language": "ta",
+   "expected": "scam",
+   "text": "வாழ்த்துக்கள்! நீங்கள் ரூ. 300,000 பரிசு வென்றுள்ளீர்கள். பரிசைப் பெற ரூ. 2,000 கட்டணம் செலுத்தவும்: bit.ly/lk-gift"
+  },
+  {
+   "id": "S21",
+   "language": "ta",
+   "expected": "scam",
+   "text": "சுங்க கட்டணம் செலுத்தப்படாததால் உங்கள் பார்சல் நிறுத்தி வைக்கப்பட்டுள்ளது. உடனே செலுத்தவும்: https://parcel-lk-fee.xyz"
+  },
+  {
+   "id": "S22",
+   "language": "ta",
+   "expected": "promotional",
+   "text": "சிறப்பு சலுகை! இந்த வார இறுதியில் அனைத்து ஆடைகளுக்கும் 25% தள்ளுபடி. உங்கள் அருகிலுள்ள கிளைக்கு வாருங்கள். நிபந்தனைகள் பொருந்தும்."
+  },
+  {
+   "id": "S23",
+   "language": "ta",
+   "expected": "promotional",
+   "text": "ரூ. 299 ரீசார்ஜ் செய்து 30 நாட்களுக்கு 8GB டேட்டா பெறுங்கள். செயல்படுத்த #789# டயல் செய்யவும்."
+  },
+  {
+   "id": "S24",
+   "language": "ta",
+   "expected": "promotional",
+   "text": "எங்கள் புதிய உணவகம் திறக்கப்பட்டுள்ளது! முதல் வாரத்தில் அனைத்து உணவுகளுக்கும் 10% தள்ளுபடி."
+  },
+  {
+   "id": "S25",
+   "language": "ta",
+   "expected": "normal",
+   "text": "உங்கள் OTP எண் 615204. இதை யாருடனும் பகிர வேண்டாம்."
+  },
+  {
+   "id": "S26",
+   "language": "ta",
+   "expected": "normal",
+   "text": "அம்மா, நான் மாலை 7 மணிக்கு வீட்டுக்கு வருவேன். சாப்பாடு வைத்திருங்கள்."
+  },
+  {
+   "id": "S27",
+   "language": "ta",
+   "expected": "normal",
+   "text": "உங்கள் கணக்கில் ரூ. 8,750.00 வரவு வைக்கப்பட்டுள்ளது. நன்றி."
+  },
+  {
+   "id": "S28",
+   "language": "si-en",
+   "expected": "scam",
+   "text": "Oyage account eka block karala. Danma verify karanna: http://lk-acc-verify.top"
+  },
+  {
+   "id": "S29",
+   "language": "si-en",
+   "expected": "promotional",
+   "text": "Ada witharai! Okkoma shoes walata 20% discount. Apey app eken order karanna."
+  },
+  {
+   "id": "S30",
+   "language": "si-en",
+   "expected": "normal",
+   "text": "Machan mama ada enna parakku wenawa, bus eka hira wela."
+  },
+  {
+   "id": "S31",
+   "language": "ta-en",
+   "expected": "scam",
+   "text": "Unga account block pannirukkom. Udane verify pannunga: http://verify-lk-acc.top"
+  },
+  {
+   "id": "S32",
+   "language": "ta-en",
+   "expected": "promotional",
+   "text": "Inniku mattum! Ella shirts-kum 20% discount. Engal app-la order pannunga."
+  },
+  {
+   "id": "S33",
+   "language": "ta-en",
+   "expected": "normal",
+   "text": "Amma naan late-a varuven, bus traffic-la maatikichu."
+  }
+ ]
+}
