@@ -1,0 +1,7 @@
+model,setting,train_f1,cv_f1,test_f1,real_f1,gap_train_test
+RandomForest,"depth=None, leaf=1, 8k feat",100.0,94.47,95.4,96.3,4.6
+RandomForest,"depth=40, leaf=2, 3k feat",99.47,93.34,92.73,96.3,6.74
+RandomForest,"depth=25, leaf=3, 3k feat",98.55,92.89,91.65,96.3,6.9
+RandomForest,"depth=20, leaf=5, 2k feat",97.6,92.44,90.89,96.3,6.71
+RandomForest,"depth=15, leaf=5, 1k feat",96.95,91.43,90.91,95.74,6.04
+RandomForest,"depth=12, leaf=8, 1k feat",96.09,90.58,89.03,95.74,7.06
