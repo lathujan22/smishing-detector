@@ -1,0 +1,155 @@
+{
+  "run": "svm",
+  "created": "2026-10-18 00:03:55",
+  "seed": 42,
+  "config": {
+    "base_cfg": {
+      "word": {
+        "ngram": [
+          1,
+          2
+        ],
+        "max_features": 10000,
+        "min_df": 2
+      },
+      "char": {
+        "ngram": [
+          2,
+          5
+        ],
+        "max_features": 10000,
+        "min_df": 3
+      },
+      "context": false,
+      "context_weight": 1.0,
+      "noise": true,
+      "resample": "smote",
+      "clf": "svm",
+      "C": 0.1,
+      "calibrate": false,
+      "task": "binary"
+    },
+    "round1": {
+      "E0 baseline (original recipe)": {},
+      "word only": {
+        "char": null
+      },
+      "char only": {
+        "word": null
+      },
+      "word 1-3 grams": {
+        "word": {
+          "ngram": [
+            1,
+            3
+          ],
+          "max_features": 10000,
+          "min_df": 2
+        }
+      },
+      "char 1-4 grams": {
+        "char": {
+          "ngram": [
+            1,
+            4
+          ],
+          "max_features": 10000,
+          "min_df": 3
+        }
+      },
+      "char 3-6 grams": {
+        "char": {
+          "ngram": [
+            3,
+            6
+          ],
+          "max_features": 10000,
+          "min_df": 3
+        }
+      },
+      "30k word + 30k char features": {
+        "word": {
+          "ngram": [
+            1,
+            2
+          ],
+          "max_features": 30000,
+          "min_df": 2
+        },
+        "char": {
+          "ngram": [
+            2,
+            5
+          ],
+          "max_features": 30000,
+          "min_df": 3
+        }
+      },
+      "C = 0.03": {
+        "C": 0.03
+      },
+      "C = 0.3": {
+        "C": 0.3
+      },
+      "C = 1.0": {
+        "C": 1.0
+      },
+      "class weighting instead of SMOTE": {
+        "resample": "balanced"
+      },
+      "no resampling": {
+        "resample": "none"
+      },
+      "no noise augmentation": {
+        "noise": false
+      },
+      "+ contextual risk features": {
+        "context": true
+      },
+      "+ contextual risk features (x3 weight)": {
+        "context": true,
+        "context_weight": 3.0
+      },
+      "sigmoid-calibrated SVM": {
+        "calibrate": true
+      },
+      "train without machine-translated rows": {
+        "train_filter": "no_mt"
+      },
+      "train on human-written data only": {
+        "train_filter": "human_only"
+      }
+    },
+    "cv": "StratifiedGroupKFold(5, shuffle, seed 42), groups=family_id, strata=class3|lang_family",
+    "selection": "CV AUPRC; threshold = CV out-of-fold F1-max",
+    "real_benchmark_policy": "never used for selection; reported only"
+  },
+  "data": {
+    "train": {
+      "path": "data/v2/train.csv",
+      "md5": "4ec1a7917bcfa9b54811255446cb7eed",
+      "rows": 9433
+    },
+    "test": {
+      "path": "data/v2/test.csv",
+      "md5": "f5fa24aae49bca0610855d8e05d93316",
+      "rows": 1574
+    },
+    "registry": {
+      "path": "data/v2/registry.csv",
+      "md5": "2396d32677ba8995041c7adeb075e404",
+      "rows": 11199
+    }
+  },
+  "environment": {
+    "python": "3.11.15",
+    "platform": "Linux-6.18.44-fc-v139-x86_64-with-glibc2.39",
+    "numpy": "2.4.4",
+    "pandas": "3.0.2",
+    "scipy": "1.17.1",
+    "sklearn": "1.8.0",
+    "xgboost": "not installed",
+    "torch": "not installed",
+    "transformers": "not installed"
+  }
+}
