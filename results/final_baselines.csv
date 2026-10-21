@@ -1,0 +1,10 @@
+model,set,acc,precision,recall,f1,fpr
+NaiveBayes,train,98.6,97.39,98.01,97.7,1.14
+NaiveBayes,test,93.2,81.05,94.66,87.32,7.27
+NaiveBayes,real,73.15,90.91,76.09,82.84,43.75
+SVM,train,99.71,99.58,99.48,99.53,0.18
+SVM,test,97.23,91.85,97.46,94.57,2.84
+SVM,real,91.67,91.92,98.91,95.29,50.0
+RandomForest,train,100.0,100.0,100.0,100.0,0.0
+RandomForest,test,97.73,95.89,94.91,95.4,1.34
+RandomForest,real,93.52,93.81,98.91,96.3,37.5
