@@ -1,0 +1,32 @@
+{
+  "arch": "bilstm",
+  "task": "binary",
+  "context": false,
+  "lr": 0.001,
+  "bs": 64,
+  "epochs": 15,
+  "patience": 3,
+  "max_len": 128,
+  "seed": 42,
+  "cpu": false,
+  "run": "bilstm_binary_seed42",
+  "device": "cuda",
+  "params": 32297602,
+  "data_md5": {
+    "train": "4ec1a7917bcfa9b54811255446cb7eed",
+    "test": "f5fa24aae49bca0610855d8e05d93316",
+    "registry": "2396d32677ba8995041c7adeb075e404"
+  },
+  "environment": {
+    "python": "3.12.9",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "numpy": "2.1.3",
+    "pandas": "2.2.3",
+    "scipy": "1.16.3",
+    "sklearn": "1.6.1",
+    "xgboost": "3.4.1",
+    "torch": "2.5.1+cu121",
+    "transformers": "4.44.2"
+  },
+  "threshold": 0.5342154325191044
+}
