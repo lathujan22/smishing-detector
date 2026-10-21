@@ -1,0 +1,113 @@
+set,model,error,pattern,count,n_errors
+real,NaiveBayes,false positive,Contains link,11,17
+real,NaiveBayes,false positive,Money amount,9,17
+real,NaiveBayes,false positive,Other,2,17
+real,NaiveBayes,false positive,Promotion / offer wording,8,17
+real,NaiveBayes,false positive,Short personal chat,1,17
+real,NaiveBayes,false positive,Telco plan / service notice,12,17
+real,NaiveBayes,false negative,Account / security wording,4,19
+real,NaiveBayes,false negative,Bank / payment alert,6,19
+real,NaiveBayes,false negative,Contains link,19,19
+real,NaiveBayes,false negative,Delivery / order,5,19
+real,NaiveBayes,false negative,Money amount,7,19
+real,NaiveBayes,false negative,Urgency wording,5,19
+real,SVM,false positive,Account / security wording,5,50
+real,SVM,false positive,Bank / payment alert,3,50
+real,SVM,false positive,Contains link,36,50
+real,SVM,false positive,Delivery / order,9,50
+real,SVM,false positive,Money amount,28,50
+real,SVM,false positive,OTP / verification code,1,50
+real,SVM,false positive,Other,2,50
+real,SVM,false positive,Promotion / offer wording,30,50
+real,SVM,false positive,Short personal chat,1,50
+real,SVM,false positive,Telco plan / service notice,21,50
+real,SVM,false positive,Urgency wording,11,50
+real,RandomForest,false positive,Account / security wording,6,92
+real,RandomForest,false positive,Bank / payment alert,8,92
+real,RandomForest,false positive,Contains link,65,92
+real,RandomForest,false positive,Delivery / order,15,92
+real,RandomForest,false positive,Money amount,50,92
+real,RandomForest,false positive,OTP / verification code,3,92
+real,RandomForest,false positive,Other,3,92
+real,RandomForest,false positive,Promotion / offer wording,62,92
+real,RandomForest,false positive,Short personal chat,1,92
+real,RandomForest,false positive,Telco plan / service notice,36,92
+real,RandomForest,false positive,Urgency wording,22,92
+real,RandomForest,false negative,Contains link,2,2
+real,RandomForest,false negative,Money amount,1,2
+real,RandomForest,false negative,Promotion / offer wording,1,2
+real,XGBoost,false positive,Account / security wording,6,88
+real,XGBoost,false positive,Bank / payment alert,7,88
+real,XGBoost,false positive,Contains link,66,88
+real,XGBoost,false positive,Delivery / order,16,88
+real,XGBoost,false positive,Money amount,50,88
+real,XGBoost,false positive,OTP / verification code,3,88
+real,XGBoost,false positive,Other,1,88
+real,XGBoost,false positive,Promotion / offer wording,58,88
+real,XGBoost,false positive,Short personal chat,1,88
+real,XGBoost,false positive,Telco plan / service notice,36,88
+real,XGBoost,false positive,Urgency wording,23,88
+real,XGBoost,false negative,Account / security wording,2,4
+real,XGBoost,false negative,Contains link,4,4
+real,XGBoost,false negative,Money amount,4,4
+real,XGBoost,false negative,Urgency wording,2,4
+test,NaiveBayes,false positive,Account / security wording,8,31
+test,NaiveBayes,false positive,Contains link,1,31
+test,NaiveBayes,false positive,Delivery / order,1,31
+test,NaiveBayes,false positive,Money amount,13,31
+test,NaiveBayes,false positive,Other,16,31
+test,NaiveBayes,false positive,Promotion / offer wording,3,31
+test,NaiveBayes,false positive,Short personal chat,1,31
+test,NaiveBayes,false positive,Urgency wording,4,31
+test,NaiveBayes,false negative,Account / security wording,5,50
+test,NaiveBayes,false negative,Bank / payment alert,1,50
+test,NaiveBayes,false negative,Contains link,22,50
+test,NaiveBayes,false negative,Delivery / order,8,50
+test,NaiveBayes,false negative,Money amount,7,50
+test,NaiveBayes,false negative,OTP / verification code,1,50
+test,NaiveBayes,false negative,Other,2,50
+test,NaiveBayes,false negative,Promotion / offer wording,12,50
+test,NaiveBayes,false negative,Telco plan / service notice,2,50
+test,NaiveBayes,false negative,Urgency wording,13,50
+test,SVM,false positive,Account / security wording,16,36
+test,SVM,false positive,Contains link,10,36
+test,SVM,false positive,Delivery / order,1,36
+test,SVM,false positive,Money amount,24,36
+test,SVM,false positive,OTP / verification code,1,36
+test,SVM,false positive,Other,2,36
+test,SVM,false positive,Promotion / offer wording,7,36
+test,SVM,false positive,Short personal chat,1,36
+test,SVM,false positive,Urgency wording,5,36
+test,SVM,false negative,Contains link,3,8
+test,SVM,false negative,Delivery / order,1,8
+test,SVM,false negative,Promotion / offer wording,4,8
+test,SVM,false negative,Urgency wording,3,8
+test,RandomForest,false positive,Contains link,6,21
+test,RandomForest,false positive,Delivery / order,1,21
+test,RandomForest,false positive,Money amount,7,21
+test,RandomForest,false positive,OTP / verification code,2,21
+test,RandomForest,false positive,Other,5,21
+test,RandomForest,false positive,Promotion / offer wording,5,21
+test,RandomForest,false positive,Short personal chat,1,21
+test,RandomForest,false positive,Urgency wording,6,21
+test,RandomForest,false negative,Contains link,6,16
+test,RandomForest,false negative,Delivery / order,2,16
+test,RandomForest,false negative,Other,4,16
+test,RandomForest,false negative,Promotion / offer wording,5,16
+test,RandomForest,false negative,Urgency wording,4,16
+test,XGBoost,false positive,Account / security wording,17,35
+test,XGBoost,false positive,Contains link,7,35
+test,XGBoost,false positive,Delivery / order,1,35
+test,XGBoost,false positive,Money amount,25,35
+test,XGBoost,false positive,OTP / verification code,1,35
+test,XGBoost,false positive,Other,3,35
+test,XGBoost,false positive,Promotion / offer wording,7,35
+test,XGBoost,false positive,Short personal chat,1,35
+test,XGBoost,false positive,Urgency wording,6,35
+test,XGBoost,false negative,Account / security wording,1,25
+test,XGBoost,false negative,Contains link,6,25
+test,XGBoost,false negative,Delivery / order,2,25
+test,XGBoost,false negative,Money amount,4,25
+test,XGBoost,false negative,Other,6,25
+test,XGBoost,false negative,Promotion / offer wording,6,25
+test,XGBoost,false negative,Urgency wording,8,25

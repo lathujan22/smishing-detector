@@ -1,0 +1,7 @@
+model,definition,normal_flagged,promo_flagged,scam_caught
+NaiveBayes,Spam+scam (baseline),47.22,72.45,82.76
+NaiveBayes,Scam-only (primary),5.56,15.31,34.48
+SVM,Spam+scam (baseline),58.33,97.96,100.0
+SVM,Scam-only (primary),33.33,38.78,100.0
+RandomForest,Spam+scam (baseline),61.11,97.96,100.0
+RandomForest,Scam-only (primary),30.56,82.65,93.1
