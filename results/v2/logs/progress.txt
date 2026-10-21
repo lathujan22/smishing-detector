@@ -1,0 +1,20 @@
+ALL START 2026-10-19T02:56:01
+START dl_cnn_binary 2026-10-19T02:56:01
+END   dl_cnn_binary exit=0 2026-10-19T02:57:21
+START dl_bilstm_binary 2026-10-19T02:57:21
+END   dl_bilstm_binary exit=0 2026-10-19T02:58:15
+START dl_hybrid_binary 2026-10-19T02:58:15
+END   dl_hybrid_binary exit=0 2026-10-19T02:59:17
+START xlmr_binary 2026-10-19T02:59:17
+START xlmr_binary 2026-10-19T03:12:15
+END   xlmr_binary exit=-1073741819 2026-10-19T03:41:19
+START xlmr_three 2026-10-19T03:41:19
+END   xlmr_three exit=-1073741819 2026-10-19T04:14:41
+START dl_hybrid_three 2026-10-19T04:14:41
+END   dl_hybrid_three exit=0 2026-10-19T04:16:08
+ALL DONE 2026-10-19T04:16:08
+START xlmr_binary_eval 2026-10-19T04:16:12
+END   xlmr_binary_eval exit=0 2026-10-19T04:16:48
+START xlmr_three_eval 2026-10-19T04:16:48
+END   xlmr_three_eval exit=0 2026-10-19T04:17:10
+EVAL DONE 2026-10-19T04:17:10
