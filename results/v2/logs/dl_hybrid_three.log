@@ -1,0 +1,19 @@
+epoch 1: loss 0.6614  val 0.7035  (5s)
+epoch 2: loss 0.4068  val 0.7898  (5s)
+epoch 3: loss 0.3237  val 0.7905  (5s)
+epoch 4: loss 0.2533  val 0.7713  (5s)
+epoch 5: loss 0.2158  val 0.8141  (5s)
+epoch 6: loss 0.1856  val 0.8157  (5s)
+epoch 7: loss 0.1511  val 0.8164  (5s)
+epoch 8: loss 0.1355  val 0.8448  (5s)
+epoch 9: loss 0.1218  val 0.8289  (5s)
+epoch 10: loss 0.1079  val 0.8240  (5s)
+epoch 11: loss 0.0951  val 0.8475  (5s)
+epoch 12: loss 0.0896  val 0.8354  (5s)
+epoch 13: loss 0.0889  val 0.8372  (4s)
+epoch 14: loss 0.0693  val 0.8118  (5s)
+early stopping
+           set  macro_f1
+    validation     84.75
+ held-out test     84.10
+real benchmark     57.18
