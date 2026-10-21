@@ -1,0 +1,51 @@
+set,ngram,n_false_positives_containing,n_false_positives
+real,<url>,35,50
+real,> ,32,50
+real,<phone>,26,50
+real, <,24,50
+real,<num>,15,50
+real,app,14,50
+real,අදම,11,50
+real,your,9,50
+real,: ,9,50
+real,anytime,8,50
+real,! ,8,50
+real,delivery,7,50
+real,eka,7,50
+real,වෙත පිවිසෙන්න,6,50
+real,please,5,50
+real,call <phone>,5,50
+real,හරහා,5,50
+real,<url> වෙත,5,50
+real,t&c,5,50
+real,collect,4,50
+real,ඔබට,4,50
+real,ඕනෑම,4,50
+real,or,4,50
+real,e>,4,50
+real,ඇත,3,50
+test,> ,31,36
+test, <,31,36
+test,<phone>,17,36
+test,unga,16,36
+test,<url>,10,36
+test,account-ku,8,36
+test,ung,8,36
+test,<money>,8,36
+test,nga,8,36
+test,ekata,8,36
+test,account,8,36
+test,account ekata,8,36
+test,oyage,8,36
+test,ata ,8,36
+test, ek,8,36
+test,e>,6,36
+test,<num>,6,36
+test,call <phone>,4,36
+test, <p,3,36
+test,claim,3,36
+test, <pho,2,36
+test, <ph,2,36
+test,ur,2,36
+test,l>,2,36
+test,l> ,2,36
