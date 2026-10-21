@@ -1,5 +1,7 @@
 """Paper-style figures: results table + confusion matrices (test set and real SMS).
-    python -m src.figures   -> results/figures/*.png (300 dpi)"""
+    python -m src.figures            -> uses models/final (noise + SMOTE models) if present
+    python -m src.figures baselines  -> uses the old models/baselines
+Output results/figures/*.png (300 dpi)"""
 import sys
 from pathlib import Path
 import joblib, numpy as np, pandas as pd
@@ -10,6 +12,8 @@ from src.evaluate import metrics, to_binary
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "results" / "figures"; OUT.mkdir(parents=True, exist_ok=True)
+_sub = sys.argv[1] if len(sys.argv) > 1 else ("final" if (ROOT / "models" / "final").exists() else "baselines")
+MODEL_DIR = ROOT / "models" / _sub
 MODELS = [("NaiveBayes", "Naive Bayes"), ("SVM", "SVM"), ("RandomForest", "Random Forest")]
 CLASSES = ["Legitimate", "Smishing/Spam"]
 plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 11})
@@ -18,7 +22,7 @@ plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 11})
 def evaluate(df, ycol):
     y = to_binary(df[ycol]); X = df["text_model"].astype(str); res = []
     for key, name in MODELS:
-        m = joblib.load(ROOT / "models" / "baselines" / f"{key}.joblib")
+        m = joblib.load(MODEL_DIR / f"{key}.joblib")
         p = m.predict(X)
         s = m.decision_function(X) if hasattr(m.named_steps["clf"], "decision_function") else m.predict_proba(X)[:, 1]
         r = metrics(y, p, s); r["name"] = name; r["cm"] = confusion_matrix(y, p, labels=[0, 1]); res.append(r)
