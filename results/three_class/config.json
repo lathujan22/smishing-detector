@@ -1,0 +1,82 @@
+{
+  "task": "three_class",
+  "seed": 42,
+  "created": "2026-10-17 23:39",
+  "labels": "0 = normal (ham), 1 = promotional (spam), 2 = scam (smishing)",
+  "data": {
+    "train": {
+      "path": "data/processed/train_feat.csv",
+      "rows": 9447,
+      "md5": "979f227a96a4d12945e5c858e30556c8"
+    },
+    "test": {
+      "path": "data/processed/test_feat.csv",
+      "rows": 1589,
+      "md5": "a574956cf07d9ad3f96a767c68917a4c"
+    },
+    "real": {
+      "path": "data/processed/real_test_feat.csv",
+      "rows": 163,
+      "md5": "482aa1b13f059925a4d80dafb7df4c11"
+    }
+  },
+  "class_counts": {
+    "train": {
+      "ham": 6588,
+      "smishing": 2076,
+      "spam": 783
+    },
+    "test": {
+      "ham": 1196,
+      "smishing": 265,
+      "spam": 128
+    },
+    "real": {
+      "spam": 98,
+      "ham": 36,
+      "smishing": 29
+    }
+  },
+  "cv": {
+    "method": "StratifiedGroupKFold",
+    "n_splits": 5,
+    "shuffle": true,
+    "random_state": 42,
+    "stratify_on": "label3",
+    "groups": "multilingual template id / machine-translation source",
+    "n_groups": 5261
+  },
+  "augmentation": {
+    "method": "noisy copy (typos, look-alike letters, word drop/swap)",
+    "copies": 1,
+    "p_char": 0.15,
+    "p_drop": 0.08,
+    "p_swap": 0.05,
+    "seed": 42,
+    "scope": "training part of each fold / full training set only"
+  },
+  "resampling": {
+    "method": "SMOTE on TF-IDF (cosine kNN, k=5)",
+    "target": "every class to the majority size",
+    "scope": "after TF-IDF fit, training part only"
+  },
+  "models": {
+    "NaiveBayes": "ComplementNB(alpha=0.01), TF-IDF word+char 30k",
+    "SVM": "LinearSVC(C=0.1), TF-IDF word+char 10k",
+    "RandomForest": "RandomForest(200 trees, max_features=sqrt, full depth), TF-IDF min_df=3 8k",
+    "XGBoost": "FALLBACK: sklearn GradientBoostingClassifier(400, depth 4, lr 0.1, subsample 0.8, max_features=sqrt) - xgboost not installable in this environment; the same script uses XGBoost where installed, TF-IDF word+char 8k"
+  },
+  "hyperparameters_note": "Fixed settings carried over from the earlier grouped-CV tuning on the training set (NB alpha, RF depth/features by CV; SVM C=0.1 chosen to reduce the train-test gap). No test or real SMS was used to choose them.",
+  "threshold": "argmax over classes",
+  "real_sms_policy": "independent final evaluation only - not used for training, tuning, thresholds or model choice",
+  "environment": {
+    "python": "3.11.15",
+    "platform": "Linux-6.18.44-fc-v139-x86_64-with-glibc2.39",
+    "sklearn": "1.8.0",
+    "numpy": "2.4.4",
+    "scipy": "1.17.1",
+    "pandas": "3.0.2",
+    "xgboost_available": false
+  },
+  "runtime_seconds": 736
+}
