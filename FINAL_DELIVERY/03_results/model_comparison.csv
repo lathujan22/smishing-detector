@@ -1,0 +1,23 @@
+family,task,model,set,macro_f1,scam_recall,nonscam_to_scam,normal_to_scam,promo_to_scam,artifact
+ML,three-class,LinearSVC,held-out test,89.67,91.37,1.78,0.99,8.66,models/v2/three_linearsvc.joblib
+ML,three-class,LinearSVC,real benchmark,73.15,89.66,17.91,22.22,16.33,models/v2/three_linearsvc.joblib
+ML,three-class,LogisticRegression,held-out test,89.0,89.58,2.34,1.8,7.09,models/v2/three_logisticregression.joblib
+ML,three-class,LogisticRegression,real benchmark,70.62,93.1,22.39,33.33,18.37,models/v2/three_logisticregression.joblib
+ML,three-class,RandomForest,held-out test,85.23,87.5,1.37,0.0,13.39,models/v2/three_randomforest.joblib
+ML,three-class,RandomForest,real benchmark,72.02,86.21,15.67,16.67,15.31,models/v2/three_randomforest.joblib
+ML,three-class,GradientBoosting,held-out test,87.27,92.56,2.91,1.71,13.39,models/v2/three_gradientboosting.joblib
+ML,three-class,GradientBoosting,real benchmark,68.59,72.41,17.91,25.0,15.31,models/v2/three_gradientboosting.joblib
+DL,three-class,XLM-R,held-out test,90.83,91.96,0.89,0.0,8.66,models/v2/xlmr/three_lr2e-05_bs16_len128_seed42
+DL,three-class,XLM-R,real benchmark,69.96,89.66,20.15,27.78,17.35,models/v2/xlmr/three_lr2e-05_bs16_len128_seed42
+DL,three-class,CNN-BiLSTM-Attention,held-out test,84.1,90.48,0.89,0.0,8.66,models/v2/dl/hybrid_three_seed42.pt
+DL,three-class,CNN-BiLSTM-Attention,real benchmark,57.18,58.62,32.09,16.67,37.76,models/v2/dl/hybrid_three_seed42.pt
+ML,binary,SVM (binary),held-out test,95.47,93.15,2.02,,,models/v2/svm_original_baseline.joblib
+ML,binary,SVM (binary),real benchmark,67.72,96.55,32.84,,,models/v2/svm_original_baseline.joblib
+DL,binary,XLM-R (binary),held-out test,94.38,94.64,3.47,,,results/v2/xlmr/binary_lr2e-05_bs16_len128_seed42
+DL,binary,XLM-R (binary),real benchmark,64.33,89.66,35.07,,,results/v2/xlmr/binary_lr2e-05_bs16_len128_seed42
+DL,binary,BiLSTM (binary),held-out test,96.13,94.05,1.7,,,results/v2/dl/bilstm_binary_seed42
+DL,binary,BiLSTM (binary),real benchmark,52.94,65.52,42.54,,,results/v2/dl/bilstm_binary_seed42
+DL,binary,CNN (binary),held-out test,94.26,91.67,2.67,,,results/v2/dl/cnn_binary_seed42
+DL,binary,CNN (binary),real benchmark,50.23,79.31,52.24,,,results/v2/dl/cnn_binary_seed42
+DL,binary,CNN-BiLSTM-Attention (binary),held-out test,93.54,94.94,4.36,,,results/v2/dl/hybrid_binary_seed42
+DL,binary,CNN-BiLSTM-Attention (binary),real benchmark,40.05,89.66,70.15,,,results/v2/dl/hybrid_binary_seed42
