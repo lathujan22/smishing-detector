@@ -1,0 +1,39 @@
+1. Phishing (scam)
+
+English
+
+Dear customer, your mobile banking access will be suspended today. Update your details immediately to avoid blocking: http://lk-bank-update.top/verify
+
+Sinhala
+
+ඔබගේ ජංගම බැංකු සේවාව අද අත්හිටුවනු ලැබේ. වහාම ඔබගේ විස්තර යාවත්කාලීන කරන්න: http://lk-bank-update.top/verify
+
+Tamil
+
+உங்கள் மொபைல் வங்கி சேவை இன்று நிறுத்தப்படும். உடனே உங்கள் விவரங்களை புதுப்பிக்கவும்: http://lk-bank-update.top/verify
+2. Normal
+
+English
+
+Your electricity bill payment of Rs. 3,450.00 was successful. Reference no 88213. Thank you.
+
+Sinhala
+
+මල්ලි, මම අද රෑ 8ට විතර එනවා. දොර වහලා තියන්න එපා.
+
+Tamil
+
+தம்பி, நான் இன்று இரவு 8 மணிக்கு வருவேன். கதவை பூட்டாதே.
+3. Promotional
+
+English
+
+Festival offer! Buy any smartphone this week and get a free 64GB memory card. Visit our showroom today. T&C apply.
+
+Sinhala
+
+උත්සව දීමනාව! මෙම සතියේ ඕනෑම ස්මාර්ට් ජංගම දුරකථනයක් මිලදී ගෙන නොමිලේ 64GB මතක කාඩ්පතක් ලබා ගන්න. කොන්දේසි අදාළයි.
+
+Tamil
+
+பண்டிகை சலுகை! இந்த வாரம் எந்த ஸ்மார்ட்போன் வாங்கினாலும் இலவச 64GB மெமரி கார்டு பெறுங்கள். நிபந்தனைகள் பொருந்தும்.
