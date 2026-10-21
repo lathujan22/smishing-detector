@@ -1,0 +1,26 @@
+{
+  "word": {
+    "ngram": [
+      1,
+      2
+    ],
+    "max_features": 10000,
+    "min_df": 2
+  },
+  "char": {
+    "ngram": [
+      2,
+      5
+    ],
+    "max_features": 10000,
+    "min_df": 3
+  },
+  "context": true,
+  "context_weight": 3.0,
+  "noise": true,
+  "resample": "none",
+  "clf": "svm",
+  "C": 0.1,
+  "calibrate": false,
+  "task": "binary"
+}
