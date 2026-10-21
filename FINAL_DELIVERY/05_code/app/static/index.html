@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SMS Smishing Detector</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#1d2433;--muted:#5b6475;--line:#e3e6ec;--brand:#1f4e9e;
+--scam:#c62828;--promo:#b26a00;--normal:#2e7d32;--warn-bg:#fff4e5;--warn-line:#f0b45a}
+@media (prefers-color-scheme:dark){:root{--bg:#12151b;--card:#1b2029;--ink:#e7eaf0;--muted:#9aa3b2;--line:#2c3340;
+--brand:#7aa7ff;--scam:#ef6b6b;--promo:#f0b45a;--normal:#6fcf7a;--warn-bg:#2b2416;--warn-line:#8a6a2a}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+font-family:"Segoe UI","Nirmala UI","Noto Sans Sinhala","Noto Sans Tamil",system-ui,sans-serif;line-height:1.45}
+header{background:var(--card);border-bottom:1px solid var(--line);padding:14px 20px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+header h1{font-size:18px;margin:0}header .sub{color:var(--muted);font-size:13px}
+nav{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}nav button{border:1px solid var(--line);background:transparent;color:var(--ink);
+padding:6px 12px;border-radius:6px;cursor:pointer;font:inherit;font-size:14px}nav button.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+main{max-width:1100px;margin:0 auto;padding:16px}
+.warn{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:8px;padding:10px 14px;font-size:13.5px;margin-bottom:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:14px}
+textarea{width:100%;min-height:110px;font:inherit;font-size:15px;padding:10px;border:1px solid var(--line);border-radius:8px;background:transparent;color:var(--ink);resize:vertical}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.btn{background:var(--brand);color:#fff;border:0;border-radius:7px;padding:9px 16px;font:inherit;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--brand);border:1px solid var(--brand)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.verdict{font-size:22px;font-weight:700;text-transform:capitalize}
+.scam{color:var(--scam)}.promotional{color:var(--promo)}.normal{color:var(--normal)}
+.pill{display:inline-block;padding:2px 9px;border-radius:999px;font-size:12.5px;border:1px solid var(--line);color:var(--muted)}
+.bar{display:flex;align-items:center;gap:8px;margin:5px 0;font-size:13.5px}.bar span:first-child{width:92px;text-transform:capitalize}
+.track{flex:1;height:10px;background:var(--line);border-radius:6px;overflow:hidden}.fill{height:100%}
+.muted{color:var(--muted);font-size:13px}ul.sig{margin:6px 0 0 18px;padding:0;font-size:14px}
+.tag{display:inline-block;background:var(--bg);border:1px solid var(--line);border-radius:5px;padding:1px 7px;margin:2px;font-size:13px}
+table{width:100%;border-collapse:collapse;font-size:13.5px}th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{color:var(--muted);font-weight:600}td.ok{color:var(--normal);font-weight:600}td.bad{color:var(--scam);font-weight:600}
+.samples{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.sample{border:1px solid var(--line);border-radius:8px;padding:10px;cursor:pointer;background:var(--card);font-size:14px}
+.sample:hover{border-color:var(--brand)}select{font:inherit;padding:6px;border-radius:6px;border:1px solid var(--line);background:var(--card);color:var(--ink)}
+.figs img{width:100%;border:1px solid var(--line);border-radius:8px;background:#fff;margin-bottom:6px}
+.hidden{display:none}code{font-size:13px}
+.verdict-card{border-left:10px solid var(--line)}.verdict-card.scam{border-left-color:var(--scam)}
+.verdict-card.promotional{border-left-color:var(--promo)}.verdict-card.normal{border-left-color:var(--normal)}
+.big{font-size:44px;font-weight:800;letter-spacing:1px;text-transform:uppercase;line-height:1.1}
+.big.scam,.big.promotional,.big.normal{color:inherit}.verdict-card.scam .big{color:var(--scam)}
+.verdict-card.promotional .big{color:var(--promo)}.verdict-card.normal .big{color:var(--normal)}
+details.more{margin-top:4px}details.more>summary{cursor:pointer;color:var(--brand);font-weight:600;padding:8px 0;list-style:revert}
+</style>
+</head>
+<body>
+<header>
+  <div><h1>Multilingual SMS Smishing Detector</h1>
+  <div class="sub">English · සිංහල · தமிழ் · Singlish · Tanglish — Normal / Promotional / Scam</div></div>
+  <nav>
+    <button data-tab="test" class="on">Test a message</button>
+    <button data-tab="samples">Sample messages</button>
+    <button data-tab="results">Model results</button>
+    <button data-tab="about">About</button>
+  </nav>
+</header>
+<main>
+<div class="warn"><b>Experimental research prototype.</b> Predictions may be wrong. The highlighted signals and words are
+approximate indicators, not proof that a message is malicious. Never use this tool as the only reason to trust or delete a message.
+Messages you type are processed in memory and are not saved.</div>
+
+<section id="tab-test">
+  <div class="card">
+    <label for="msg"><b>Paste an SMS</b></label>
+    <textarea id="msg" placeholder="Paste or type an SMS in English, Sinhala, Tamil, Singlish or Tanglish..."></textarea>
+    <div class="row">
+      <button class="btn" id="go">Analyse</button>
+      <label class="muted"><input type="checkbox" id="usex" checked> also ask XLM-R (deep model)</label>
+      <span class="muted" id="status"></span>
+    </div>
+  </div>
+  <div id="out" class="hidden">
+    <div class="card verdict-card" id="vcard">
+      <div class="muted">Final prediction</div>
+      <div class="big" id="verdict"></div>
+      <div class="row" style="margin-top:8px"><span class="pill" id="lang"></span><span class="pill" id="agree"></span><span class="pill" id="conf"></span></div>
+      <div style="margin-top:12px"><b style="font-size:14px">Why — risk signals in this message</b><ul class="sig" id="sig"></ul></div>
+    </div>
+    <details class="more" id="details">
+    <summary>Show details — each model's scores, evidence words and masked text</summary>
+    <div class="card">
+      <div class="muted">Text as the model sees it (links, phone numbers, amounts masked):</div>
+      <div id="masked" style="font-size:14px;margin-top:4px"></div>
+    </div>
+    <div class="grid">
+      <div class="card"><div class="muted">Best ML model · LinearSVC (default)</div>
+        <div class="verdict" id="svmv"></div><div id="svmbars"></div>
+        <div class="muted" id="svmnote"></div>
+        <div style="margin-top:8px"><b style="font-size:14px">Words that pushed this decision</b><div id="ngr"></div></div></div>
+      <div class="card"><div class="muted">Best DL model · XLM-R (second opinion)</div>
+        <div class="verdict" id="xv"></div><div id="xbars"></div><div class="muted" id="xnote"></div></div>
+      <div class="card"><div class="muted">Reference model</div>
+        <div class="muted" style="margin-top:6px" id="bin"></div></div>
+    </div>
+    </details>
+  </div>
+</section>
+
+<section id="tab-samples" class="hidden">
+  <div class="card">
+    <div class="muted" id="snote"></div>
+    <div class="row">
+      <select id="flang"><option value="">All languages</option><option value="en">English</option><option value="si">Sinhala</option>
+        <option value="ta">Tamil</option><option value="si-en">Singlish</option><option value="ta-en">Tanglish</option></select>
+      <select id="fcls"><option value="">All types</option><option value="scam">Scam</option><option value="promotional">Promotional</option><option value="normal">Normal</option></select>
+      <button class="btn ghost" id="runall">Run all samples through the models</button>
+      <span class="muted" id="runstat"></span>
+    </div>
+  </div>
+  <div class="samples" id="slist"></div>
+  <div class="card hidden" id="runbox" style="margin-top:14px">
+    <b>Results on the demo samples</b> <span class="muted">(written for testing — not evidence of real-world accuracy)</span>
+    <div id="runsum" style="margin:8px 0"></div>
+    <div style="overflow-x:auto"><table id="runtab"></table></div>
+  </div>
+</section>
+
+<section id="tab-results" class="hidden">
+  <div class="card"><b>Selected models</b><div id="sel" style="margin-top:6px"></div></div>
+  <div class="card"><b>All models — held-out test and real Sri Lankan SMS benchmark (n = 163)</b>
+    <div style="overflow-x:auto;margin-top:8px"><table id="cmp"></table></div>
+    <div class="muted" style="margin-top:6px">Gradient Boosting = scikit-learn GradientBoostingClassifier (not XGBoost). The real benchmark is small and has informed earlier research decisions.</div></div>
+  <div class="card"><b>LinearSVC by language</b><div style="overflow-x:auto;margin-top:8px"><table id="lang3"></table></div></div>
+  <div class="card figs"><b>Figures</b><div id="figs" style="margin-top:8px"></div></div>
+</section>
+
+<section id="tab-about" class="hidden">
+  <div class="card">
+    <b>How it works</b>
+    <ul class="sig">
+      <li>The message is cleaned exactly like the training data: Unicode normalisation (Sinhala and Tamil joiners kept), operator warning removed, links / phone numbers / amounts masked.</li>
+      <li><b>LinearSVC (three-class)</b> — word + character TF-IDF, the best classical model (default answer).</li>
+      <li><b>XLM-R (three-class)</b> — fine-tuned multilingual transformer, the best deep model (second opinion, needs PyTorch).</li>
+      <li>Model choice: three-class formulation (fewer false alarms on real SMS), then ranked by held-out test macro-F1.</li>
+      <li>On the real benchmark the two models are statistically tied (McNemar p = 0.71): both catch about 90% of real scams and wrongly flag about 18–20% of real normal / promotional SMS.</li>
+    </ul>
+    <b>Known weaknesses</b>
+    <ul class="sig">
+      <li>Real Sri Lankan service messages (OTPs, telco notices) and romanised Singlish / Tanglish chat are sometimes flagged as scams.</li>
+      <li>Very small real Tamil sample; per-language results for Tamil are not reliable.</li>
+      <li>API: <code>GET /health</code>, <code>POST /predict</code>, <code>POST /predict/batch</code>, <code>GET /model/info</code> — interactive docs at <a href="/docs">/docs</a>.</li>
+    </ul>
+  </div>
+</section>
+</main>
+<script>
+const $ = s => document.querySelector(s);
+const COL = {scam:"var(--scam)", promotional:"var(--promo)", normal:"var(--normal)"};
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+document.querySelectorAll("nav button").forEach(b => b.onclick = () => {
+  document.querySelectorAll("nav button").forEach(x => x.classList.toggle("on", x === b));
+  ["test","samples","results","about"].forEach(t => $("#tab-"+t).classList.toggle("hidden", t !== b.dataset.tab));
+  if (b.dataset.tab === "results") loadResults();
+});
+function bars(obj){ return Object.entries(obj).map(([k,v]) =>
+  `<div class="bar"><span>${k}</span><div class="track"><div class="fill" style="width:${(v*100).toFixed(1)}%;background:${COL[k]}"></div></div><span>${(v*100).toFixed(1)}%</span></div>`).join(""); }
+async function post(url, body){ const r = await fetch(url,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});
+  if(!r.ok) throw new Error((await r.json()).detail || r.status); return r.json(); }
+async function analyse(text){
+  if(!text.trim()) return; $("#status").textContent = "analysing...";
+  try{
+    const r = await post("/predict",{text, use_xlmr:$("#usex").checked});
+    $("#out").classList.remove("hidden");
+    const fin = r.final.prediction;
+    $("#verdict").textContent = fin === "scam" ? "Scam — be careful" : (fin === "promotional" ? "Promotional" : "Normal");
+    $("#vcard").className = "card verdict-card " + fin;
+    $("#conf").textContent = "LinearSVC score " + (r.svm.scores[fin]*100).toFixed(0) + "% (relative, not calibrated)";
+    $("#lang").textContent = "Language: " + r.language.name;
+    $("#agree").textContent = r.xlmr ? (r.final.models_agree ? "Both models agree" : `XLM-R says ${r.xlmr.prediction} — treat with care`) : "XLM-R not used";
+    $("#details").open = false;
+    $("#masked").textContent = r.masked_text;
+    $("#svmv").textContent = r.svm.prediction; $("#svmv").className = "verdict " + r.svm.prediction;
+    $("#svmbars").innerHTML = bars(r.svm.scores); $("#svmnote").textContent = r.svm.score_note;
+    $("#ngr").innerHTML = r.svm.evidence_ngrams.map(t => `<span class="tag">${esc(t)}</span>`).join("") || '<span class="muted">none</span>';
+    if(r.xlmr){ $("#xv").textContent = r.xlmr.prediction; $("#xv").className = "verdict " + r.xlmr.prediction;
+      $("#xbars").innerHTML = bars(r.xlmr.probabilities); $("#xnote").textContent = r.xlmr.probability_note; }
+    else { $("#xv").textContent = "—"; $("#xv").className = "verdict"; $("#xbars").innerHTML = "";
+      const h = await (await fetch("/health")).json(); $("#xnote").textContent = "XLM-R status: " + h.xlmr; }
+    $("#sig").innerHTML = r.signals.length ? r.signals.map(s => `<li>${esc(s.signal)} <span class="pill">${s.weight}</span></li>`).join("") : "<li>no specific risk signals</li>";
+    $("#bin").textContent = `Binary scam model: ${r.binary_svm.flags_scam ? "flags as scam" : "not flagged"} (margin ${r.binary_svm.scam_margin}, threshold ${r.binary_svm.threshold})`;
+    $("#status").textContent = "";
+  }catch(e){ $("#status").textContent = "Error: " + e.message; }
+}
+$("#go").onclick = () => analyse($("#msg").value);
+let SAMPLES = [];
+async function loadSamples(){
+  const s = await (await fetch("/samples")).json(); SAMPLES = s.samples; $("#snote").textContent = s.note; renderSamples(); }
+function renderSamples(){
+  const L = $("#flang").value, C = $("#fcls").value;
+  $("#slist").innerHTML = SAMPLES.filter(s => (!L || s.language===L) && (!C || s.expected===C)).map(s =>
+    `<div class="sample" data-id="${s.id}"><div class="row" style="margin:0 0 6px"><span class="pill">${s.language}</span><span class="pill ${s.expected}">${s.expected}</span></div>${esc(s.text)}</div>`).join("");
+  document.querySelectorAll(".sample").forEach(d => d.onclick = () => {
+    const s = SAMPLES.find(x => x.id === d.dataset.id); $("#msg").value = s.text;
+    document.querySelector('nav button[data-tab="test"]').click(); analyse(s.text); });
+}
+$("#flang").onchange = renderSamples; $("#fcls").onchange = renderSamples;
+$("#runall").onclick = async () => {
+  $("#runstat").textContent = "running...";
+  try{
+    const r = await post("/predict/batch",{texts: SAMPLES.map(s=>s.text), use_xlmr:$("#usex").checked});
+    let okS=0, okX=0, nX=0;
+    const rows = r.results.map((p,i) => { const s = SAMPLES[i]; const a = p.svm.prediction===s.expected; okS+=a;
+      let xc = "—", xa=""; if(p.xlmr){ nX++; const b = p.xlmr.prediction===s.expected; okX+=b; xc=p.xlmr.prediction; xa = b?"ok":"bad"; }
+      return `<tr><td>${s.id}</td><td>${s.language}</td><td>${s.expected}</td><td class="${a?"ok":"bad"}">${p.svm.prediction}</td><td class="${xa}">${xc}</td><td>${esc(s.text.slice(0,70))}…</td></tr>`; });
+    $("#runtab").innerHTML = "<tr><th>ID</th><th>Lang</th><th>Intended</th><th>LinearSVC</th><th>XLM-R</th><th>Message</th></tr>" + rows.join("");
+    $("#runsum").innerHTML = `LinearSVC matches the intended label on <b>${okS}/${SAMPLES.length}</b>` + (nX ? ` · XLM-R on <b>${okX}/${nX}</b>` : " · XLM-R not available");
+    $("#runbox").classList.remove("hidden"); $("#runstat").textContent = "";
+  }catch(e){ $("#runstat").textContent = "Error: " + e.message; }
+};
+let resultsLoaded = false;
+async function loadResults(){
+  if(resultsLoaded) return; resultsLoaded = true;
+  const info = await (await fetch("/model/info")).json(); const m = await (await fetch("/metrics")).json();
+  $("#sel").innerHTML = Object.entries(info.selected_models).map(([f,s]) =>
+    `<div><b>Best ${f}: ${s.model}</b> — held-out test macro-F1 ${s.test_macro_f1}; real benchmark: macro-F1 ${s.real_macro_f1}, scam recall ${s.real_scam_recall}%, non-scam flagged as scam ${s.real_nonscam_to_scam}%</div>`).join("") +
+    `<div class="muted">XLM-R status on this computer: ${info.xlmr_status}</div>`;
+  $("#cmp").innerHTML = "<tr><th>Family</th><th>Task</th><th>Model</th><th>Set</th><th>Macro-F1</th><th>Scam recall</th><th>Non-scam→scam</th></tr>" +
+    m.comparison.map(r => `<tr><td>${r.family}</td><td>${r.task}</td><td>${r.model}</td><td>${r.set}</td><td>${r.macro_f1}</td><td>${r.scam_recall}</td><td>${r.nonscam_to_scam}</td></tr>`).join("");
+  $("#lang3").innerHTML = "<tr><th>Set</th><th>Language</th><th>n</th><th>Scams</th><th>Macro-F1</th><th>Scam recall</th><th>Non-scam→scam</th><th>Reliable?</th></tr>" +
+    m.linearsvc_by_language.map(r => `<tr><td>${r.set}</td><td>${r.lang}</td><td>${r.n}</td><td>${r.n_scam}</td><td>${r.macro_f1}</td><td>${r.scam_recall}</td><td>${r.nonscam_to_scam_fpr}</td><td>${r.reliable?"yes":"no (too few)"}</td></tr>`).join("");
+  $("#figs").innerHTML = m.figures.map(f => `<div class="muted">${f}</div><img loading="lazy" src="/figures/${f}" alt="${f}">`).join("");
+}
+loadSamples();
+</script>
+</body>
+</html>
