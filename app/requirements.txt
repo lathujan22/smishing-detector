@@ -1,0 +1,7 @@
+# web application (in addition to the research requirements: pandas, scikit-learn, scipy, numpy, joblib)
+fastapi>=0.110
+uvicorn>=0.29
+# optional - enables the XLM-R second opinion
+torch>=2.1
+transformers==4.44.2
+sentencepiece
