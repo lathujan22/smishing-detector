@@ -1,0 +1,56 @@
+# Request / action verbs (a scam asks you to DO something).
+click
+tap
+verify
+confirm
+update
+enter
+submit
+provide
+reply
+send
+share with us
+pay
+payment
+fee
+deposit
+transfer
+claim
+login
+log in
+visit our website
+# Singlish
+click karanna
+verify karanna
+update karanna
+pay karanna
+gewanna
+danna
+ewanna
+labaganna
+laba ganna
+ganna
+# Tanglish
+pannunga
+podunga
+kattunga
+anuppunga
+# Sinhala script
+ක්ලික්
+තහවුරු කරන්න
+යාවත්කාලීන කරන්න
+ගෙවන්න
+ගාස්තුව
+ඇතුළත් කරන්න
+එවන්න
+ලබා ගැනීමට
+# Tamil script
+கிளிக்
+சரிபார்க்க
+உறுதிப்படுத்த
+புதுப்பிக்க
+செலுத்த
+கட்டணம்
+உள்ளிடவும்
+அனுப்பு
+பெற
