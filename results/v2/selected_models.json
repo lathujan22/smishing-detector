@@ -1,0 +1,18 @@
+{
+  "ML": {
+    "model": "LinearSVC",
+    "artifact": "models/v2/three_linearsvc.joblib",
+    "test_macro_f1": 89.67,
+    "real_macro_f1": 73.15,
+    "real_scam_recall": 89.66,
+    "real_nonscam_to_scam": 17.91
+  },
+  "DL": {
+    "model": "XLM-R",
+    "artifact": "models/v2/xlmr/three_lr2e-05_bs16_len128_seed42",
+    "test_macro_f1": 90.83,
+    "real_macro_f1": 69.96,
+    "real_scam_recall": 89.66,
+    "real_nonscam_to_scam": 20.15
+  }
+}
