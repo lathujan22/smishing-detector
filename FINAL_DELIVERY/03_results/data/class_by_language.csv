@@ -1,0 +1,9 @@
+role,lang_family,normal,promotional,scam,All
+pool,EN,5041,520,543,6104
+pool,SI,1368,196,895,2459
+pool,TA,1375,195,903,2473
+real_benchmark,EN,23,54,12,89
+real_benchmark,SI,12,38,17,67
+real_benchmark,TA,0,4,0,4
+real_benchmark,mixed,1,2,0,3
+All,,7820,1009,2370,11199
