@@ -1,0 +1,87 @@
+# Urgency / threat words. One term per line. '*' at the end = prefix match (Latin only).
+# Sinhala/Tamil script terms are matched as substrings. Lines starting with # are comments.
+# --- English
+urgent*
+immediately
+asap
+act now
+right now
+hurry
+last chance
+final notice
+final warning
+final reminder
+limited time
+deadline
+expire*
+suspend*
+block*
+locked
+deactivat*
+terminat*
+will be closed
+account closed
+legal action
+court
+arrest*
+penalt*
+late payment
+failure to
+otherwise
+before midnight
+within 24 hours
+today only
+don't miss
+do not miss
+avoid delays
+returned to the warehouse
+# --- Singlish (romanised Sinhala)
+hadisi*
+wahama
+ikmanin
+ada witharai
+ada ma
+dan ma
+dan cancel
+nattam
+close wenawa
+cut karanawa
+nawaththanna
+pramada nokaranna
+# --- Sinhala script
+හදිසි
+වහාම
+ඉක්මනින්
+අද දිනය තුළ
+අවසන් අවස්ථාව
+අත්හිටුව
+අවහිර
+වසා දම
+අක්‍රිය
+කල් ඉකුත්
+විසන්ධි
+නඩු
+දඩ
+පැය
+# --- Tanglish (romanised Tamil)
+avasar*
+udane
+ippove
+inniku
+close aagum
+cut pannuvom
+suspend pannuvom
+# --- Tamil script
+அவசர
+உடனே
+உடனடியாக
+இன்றே
+மணி நேரத்திற்குள்
+இறுதி
+முடக்க
+தடுக்கப்பட்
+மூடப்படும்
+இடைநிறுத்த
+காலாவதி
+அபராதம்
+துண்டிக்க
