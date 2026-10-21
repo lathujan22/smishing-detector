@@ -1,0 +1,7 @@
+role,source,normal,promotional,scam,All
+pool,mendeley,4834,454,543,5831
+pool,mt_nllb,1740,219,822,2781
+pool,multilingual,1003,172,976,2151
+pool,uci,207,66,0,273
+real_benchmark,real_form,36,98,29,163
+All,,7820,1009,2370,11199
